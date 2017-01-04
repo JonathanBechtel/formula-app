@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include partials/templates/header.ejs %>
+    <% include partials/templates/stylesheets.ejs %>
+  </head>
+  <body id="<%= ID %>">
+    <% include partials/templates/menu-not-signed-in.ejs %>
+    <h1 class="centered"><%= title %></h1>
+    <p class="centered">Enter the ingredients for your formula below.</p>
+
+    <% include partials/content/formula-form.ejs %>
+
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="../javascripts/formula-api.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  </body>
+</html>

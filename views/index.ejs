@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include partials/templates/header.ejs %>
+    <% include partials/templates/stylesheets.ejs %>
+  </head>
+  <body id="<%= ID %>">
+    <% include partials/templates/menu-not-signed-in.ejs %>
+    <h1 class="centered"><%= title %></h1>
+    <p class="centered">Welcome to <%= title %></p>
+  </body>
+</html>

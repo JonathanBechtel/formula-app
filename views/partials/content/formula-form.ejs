@@ -1,0 +1,23 @@
+<form class="centered formula-form">
+    <input type="text" id="name" placeholder="Ingredient Name" required  />
+    Amount: <input type="number" id="amount" placeholder="0" min="0" required /> mg
+    <input type="text" id="notes" placeholder="notes: form, supplier, etc" />
+    <input type="submit" value="Add Ingredient" class="pure-button" />
+</form>
+
+<div class="centered">
+    <h2>Your Formula</h2>
+      <table class="centered-block pure-table pure-table-striped formula-table">
+        <thead class="thead-styled">
+          <tr class="centered">
+              <th>Ingredient</th>
+              <th>Amount</th>
+              <th>Notes</th>
+              <th></th>
+          </tr>
+        </thead>
+        <tbody class="formula-body">
+        </tbody>
+      </table>
+    <button type="submit" value="Submit" class="pure-button pure-button-primary formula-submit">Submit</button>
+  </div>
