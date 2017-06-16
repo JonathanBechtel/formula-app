@@ -1,11 +1,12 @@
 <div class="pure-g">
-  <ul class="list-unstyled">
     <% formulas.forEach(function(item){ %>
-      <div class="pure-u-1-4">
-        <div class="formula-block centered">
-          <li class="padded-top"><h4> <%= item.name %></h4></li>
+      <div class="pure-u-1 pure-u-sm-1-2 pure-u-md-1-4 pure-u-xl-1-5">
+          <div class="formula-block centered" id="<%= item._id %>">
+            <h4 class="padded-top"> <%= item.name %></h4>
+            <p> <%= item.description %></p>
+                <button class="button-success pure-button"><a href="/formula/<%= item._id %>">Show</a></button>
+                <button class="button-warning pure-button">Delete</button>
         </div>
       </div>
-    <%   });   %>
-  </ul>
+      <% }); %>
 </div>

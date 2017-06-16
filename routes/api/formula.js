@@ -1,5 +1,5 @@
-var app = require('express');
-var router = app.Router();
+var app      = require('express');
+var router   = app.Router();
 var formulas = require('../../data/formula.json');
 
 router.get('/api/formula', function(req, res){

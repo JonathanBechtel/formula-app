@@ -1,9 +1,28 @@
 @import "../variables.less";
 
 .formula-block {
-  height: 15.625em;
-  width: 15.625em;
+  height: 225px;
+  width:  200px;
   border: 3px solid lighten(@dark-grey, 15%);
   box-shadow: 1px 1px @grey;
   margin-bottom: 1.5em;
+  margin-right: 1.5em;
+  position: relative;
+  a {
+    color: @off-white;
+    text-decoration: none;
+  }
+  p {
+    padding: 0px 5px 0px 5px;
+  }
+  .button-success {
+    position: absolute;
+    bottom: 0.5em;
+    left: 10.5%;
+  }
+  .button-warning {
+    position: absolute;
+    bottom: 0.5em;
+    right: 7.5%;
+  }
 }

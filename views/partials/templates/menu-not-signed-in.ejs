@@ -1,11 +1,18 @@
   <div class="pure-menu pure-menu-horizontal">
     <ul class="pure-menu-list main-nav">
-      <li class="pure-menu-item"><a href="/" class="pure-menu-link padded-top">Home</a></li>
-      <li class="pure-menu-item"><a href="/about" class="pure-menu-link padded-top">About</a></li>
-      <li class="pure-menu-item"><a href="/contact" class="pure-menu-link padded-top">Contact</a></li>
-      <li class="pure-menu-item"><a href="/formula" class="pure-menu-link padded-top">Build A Formula</a></li>
-      <li class="pure-menu-item"><a href="/formula-list" class="pure-menu-link padded-top">Your Formulas</a></li>
-      <li class="pure-menu-item"><a href="/signup" class="pure-menu-link padded-top">Sign Up</a></li>
-      <li class="pure-menu-item"><a href="/login" class="pure-menu-link padded-top">Log In</a></li>
+        <% if (loggedIn) { %>
+          <li class="pure-menu-item"><a href="/formula" class="pure-menu-link padded-top">Build A Formula</a></li>
+          <li class="pure-menu-item"><a href="/formula-list" class="pure-menu-link padded-top">Your Formulas</a></li>
+          <li class="pure-menu-item"><p class="padded-top"><%= user.email %> <a href="/logout" class="pure-menu-link">(Log Out)</a></p></li>
+        <% } %>
+        <% if (!loggedIn) { %>
+          <li class="pure-menu-item"><a href="/" class="pure-menu-link padded-top">Home</a></li>
+          <li class="pure-menu-item"><a href="/about" class="pure-menu-link padded-top">About</a></li>
+          <li class="pure-menu-item"><a href="/contact" class="pure-menu-link padded-top">Contact</a></li>
+          <li class="pure-menu-item"><a href="/formula" class="pure-menu-link padded-top">Build A Formula</a></li>
+          <li class="pure-menu-item"><a href="/formula-list" class="pure-menu-link padded-top">Your Formulas</a></li>
+          <li class="pure-menu-item"><a href="/register" class="pure-menu-link padded-top">Sign Up</a></li>
+          <li class="pure-menu-item"><a href="/login" class="pure-menu-link padded-top purple-link">Log In</a></li>
+        <% } %>
     </ul>
   </div>

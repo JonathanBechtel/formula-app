@@ -24,13 +24,36 @@
   list-style-type: none;
   margin: 0 px;
   padding: 0 px;
-}
-
-.list-unstyled li {
-  display: inline-block;
+  li {
+    display: inline-block;
+  }
 }
 
 .thead-styled th {
   background-color: @table-grey;
   color: @off-white;
+}
+
+.button-warning {
+  background: rgb(223, 117, 20);
+  color: @off-white;
+}
+
+.button-success {
+    background: rgb(28, 184, 65);
+    color: @off-white;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.message {
+  background-color: @red;
+  padding: 5px 10px 5px 10px;
+  border: 1px solid darken(@red, 5%);
+  margin-bottom: 15px;
+  p {
+    color: @off-white;
+  }
 }

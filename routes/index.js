@@ -7,7 +7,10 @@ var router = express.Router();
       title: 'The Formula Generator',
       description: 'Easily manage and store your supplement formulas',
       ID: 'home',
-      keywords: 'formula generator, supplement analyzer, formula management' });
+      keywords: 'formula generator, supplement analyzer, formula management',
+      user: req.user,
+      loggedIn: req.isAuthenticated()
+    });
   });
 
 module.exports = router;
