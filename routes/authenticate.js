@@ -20,15 +20,15 @@ router.get('/register', function(req, res){
 
 router.post('/register', function(req, res){
   var name = req.body.name;
-  var email = req.body.email;
+  var username = req.body.username;
   var password = req.body.password;
   var password2 = req.body.password2;
   var db = req.db.collection('users');
 
   //Validate Input
   req.checkBody('name', 'Your Name is required').notEmpty();
-  req.checkBody('email', 'Please enter a valid e-mail address').isEmail();
-  req.checkBody('email', 'The e-mail field cannot be empty.').notEmpty();
+  req.checkBody('username', 'Please enter a valid e-mail address').isEmail();
+  req.checkBody('username', 'The e-mail field cannot be empty.').notEmpty();
   req.checkBody('password', 'Please enter a password between 8 and 24 characters in length').isLength({min: 8, max: 24});
   req.checkBody('password', 'Please enter something for your password.').notEmpty();
   req.checkBody('password2', 'Passwords do not match.').equals(req.body.password);
@@ -49,7 +49,7 @@ router.post('/register', function(req, res){
     });
   //if not, check to see if e-mail address already exists
   } else {
-      var query = db.find({"email": email}).toArray(function(err, docs){
+      var query = db.find({"username": username}).toArray(function(err, docs){
           assert.equal(null, err);
           //if yes, display page w/ error message
           if (docs.length > 0) {
@@ -71,11 +71,13 @@ router.post('/register', function(req, res){
               bcrypt.hash(password, salt, function(err, hash) {
                 db.insertOne({
                   "name": name,
-                  "email": email,
+                  "username": username,
                   "password": hash
                 }, function(err, result){
                     assert.equal(null, err);
                     res.redirect('/');
+                    console.log(req.user);
+                    console.log(req.isAuthenticated());
                 });
               });
             });
@@ -85,7 +87,7 @@ router.post('/register', function(req, res){
 });
 
 passport.serializeUser(function(user, done) {
-  done(null, user.email);
+  done(null, user.username);
 });
 
 passport.deserializeUser(function(id, done) {
@@ -98,16 +100,13 @@ passport.deserializeUser(function(id, done) {
   });
 });
 
-passport.use(new LocalStrategy({
-  usernameField: "email",
-  passwordField: "password"
-},
+passport.use(new LocalStrategy(
  function(username, password, done) {
     mongo.connect("mongodb://localhost:27017/formulas", function(e, db) {
       if (e) {return next(e);}
       var col = db.collection("users");
 
-          col.findOne({"email": username}, function(err, user){
+          col.findOne({"username": username}, function(err, user){
             if (err) { return done(err);}
             if(!user) {
               return done(null, false, { message: "Please check your log in credentials." });
@@ -115,7 +114,7 @@ passport.use(new LocalStrategy({
             bcrypt.compare(password, user.password, function(err, res){
               if (err) throw err;
               if (res == true) {
-                return done(null, {email: username, password: password});
+                return done(null, {username: username, password: password});
               } else {
                 return done(null, false, { message: "Invalid password."});
               }
@@ -137,7 +136,7 @@ router.get('/login', function(req, res){
 });
 
 router.post('/login',
-  passport.authenticate('local', {successRedirect:'/', failureRedirect:'/login',failureFlash: false}),
+  passport.authenticate('local', {successRedirect:'/', failureRedirect:'/about',failureFlash: false}),
   function(req, res){
     console.log(req.user);
     console.log("The user was logged");
