@@ -8,13 +8,14 @@ var localStrategy = require('passport-local').Strategy;
 var mongo = require('mongodb').MongoClient;
 var session = require('express-session');
 var bcrypt = require('bcrypt');
+var flash = require('connect-flash');
 
 app.use(cookieParser());
 // Express Session
 app.use(session({
   secret: 'secret',
   resave: false,
-  saveUninitialized: true
+  saveUninitialized: false
   }));
 
 
@@ -55,6 +56,9 @@ app.use(expressValidator({
     };
   }
 }));
+
+// Connect Flash
+app.use(flash());
 
 //define routes
 var root = require('./routes/index');

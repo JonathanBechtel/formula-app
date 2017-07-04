@@ -1,7 +1,22 @@
-<form id="registration-form" action="/register" method="post">
-  <input type="text" name="name" required="true" placeholder="Your Name" /> <br />
-  <input type="email" name="username" required="true" placeholder="Your Email Address" /> <br />
-  <input type="password" name="password" required="true" placeholder="password" /> <br />
-  <input type="password" name="password2" required="true" placeholder="password" /> <br />
-  <input type="submit" value="Sign Up" class="pure-button"></input>
+<form class="pure-form pure-form-stacked centered-form" id="registration-form" action="/register" method="post">
+  <fieldset>
+
+      <label for="name">Your Name:</label>
+      <input type="text" name="name" id="name" required="true" placeholder="Your Name" />
+
+      <label for="username">Your e-mail:</label>
+      <input type="email" name="username" id="username" required="true" placeholder="Your Email Address" />
+
+      <label for="username2">Repeat e-mail:</label>
+      <input type="email" name="username2" id="username2" required="true" placeholder="Your Email Address" />
+
+      <label for="password">Your password:</label>
+      <input type="password" pattern=".{8,24}" title="8 to 24 characters" name="password" id="password" required="true" placeholder="password" />
+      <span class="pure-form-message margin-b-1-2">8-24 characters, 1 number, 1 letter, 1 special character.</span>
+
+      <label for="password2">Repeat password:</label>
+      <input type="password" pattern=".{8,24}" title="8 to 24 characters" name="password2" id="password2" required="true" placeholder="password"/><br />
+
+    <input type="submit" value="Sign Up" class="pure-button"></input>
+  </fieldset>
 </form>

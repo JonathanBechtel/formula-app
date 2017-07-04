@@ -1,5 +1,11 @@
-<form id="registration-form" action="/login" method="post">
-  <input type="email" name="email" required="true" placeholder="Your Email Address" /> <br />
-  <input type="password" name="password" required="true" placeholder="password" /> <br />
-  <input type="submit" value="Sign Up" class="pure-button"></input>
+<form class="pure-form pure-form-stacked centered-form" id="login-form" action="/login" method="post">
+  <fieldset>
+      <label for="username">Your e-mail:</label>
+      <input type="email" name="username" id="username" required="true" placeholder="Your Email Address" />
+
+      <label for="password">Your password:</label>
+      <input type="password" pattern=".{8,24}" title="8 to 24 characters" name="password" id="password" required="true" placeholder="password" />
+
+    <input type="submit" value="Sign In" class="pure-button"></input>
+  </fieldset>
 </form>

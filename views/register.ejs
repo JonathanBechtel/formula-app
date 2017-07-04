@@ -8,21 +8,30 @@
   </head>
   <body id="<%= ID %>">
     <% include partials/templates/menu-not-signed-in.ejs %>
+
+    <% if (!registered) { %>
     <h1 class="centered"><%= title %></h1>
     <p class="centered">Enter the Information Below to Become A User</p>
 
     <div class="centered">
-      <% if (messages) { %>
-      <%  messages.forEach(function(item){ %>
-          <div class="pure-u-1 pure-u-sm-1-2 pure-u-xl-1-4">
-            <div class="message">
-              <p><%= item.msg %></p>
-            </div>
-          </div>
-      <%  }); %>
-      <% } %>
+
+      <div class="pure-u-1 pure-u-sm-1-2 pure-u-xl-1-4">
+      <% if (errors) { %>
+        <%  errors.forEach(function(item){ %>
+              <div class="message">
+                <p><%= item.msg %></p><br />
+              </div>
+        <%  }); %>
+      <%  } %>
+      </div>
+
       <% include partials/content/registration-form.ejs %>
     </div>
+    <% } else { %>
+      <h1 class="centered">Congrats! You're Registered.</h1>
+      <p class="centered">Please continue to our <a href="/login">Log In Page.</a></p>
+    <% } %>
+
 
   </body>
 </html>

@@ -6,8 +6,6 @@ var ObjectID = require('mongodb').ObjectID;
 
 //retrieves all formulas and displays them
 router.get('/formula-list', function(req, res){
-  console.log(req.user);
-  console.log(req.isAuthenticated);
   var db = req.db.collection('formulas');
   db.find({}).toArray(function(e, docs){
     if (e) {
@@ -59,7 +57,9 @@ router.get('/formula/:id', function(req, res){
         title: 'Modify and edit your formula',
         description:  'Build and manage nutraceutical formulas',
         ID: 'formula',
-        keywords: 'formula builder, formula analyzer, nutraceutical supplement analysis'
+        keywords: 'formula builder, formula analyzer, nutraceutical supplement analysis',
+        user: req.user,
+        loggedIn: req.isAuthenticated()
         });
       }
     });
