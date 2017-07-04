@@ -1,13 +1,12 @@
 //Created to manage the creation and submission of
 // formulas at './formula' in app
 $(document).ready(function(){
-  console.log("The page has loaded.");
   $.getJSON('/api/formula', updateIngredient);
 
   $('button').on('click', function(e){
     e.preventDefault();
     $.ajax({
-      url:  (this.id) ? '/api/formula-list/' + this.id : '/api/formula-list',
+      url:  (this.id) ? '/formula-list/' + this.id : '/formula-list',
       type: 'POST',
       data: {
         name: $('#project').val(),
@@ -19,7 +18,7 @@ $(document).ready(function(){
   });
 
   $('.formula-form').submit(function(e){
-    e.preventDefault(); //stops page from reloading
+    e.preventDefault();
     $.post('/api/formula', {
           name: $('#name').val(),
           amount: $('#amount').val(),

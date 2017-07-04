@@ -24,6 +24,40 @@ router.get('/formula-list', function(req, res){
   });
 });
 
+router.post('/formula-list', function(req, res){
+    var db = req.db.collection('formulas');
+    var formula = data;
+
+    db.insertOne({
+      "name": req.body.name,
+      "description": req.body.description,
+      "formula": formula
+    }, function(err, r) {
+        assert.equal(null, err);
+        assert.equal(1, r.insertedCount);
+    });
+    data.length = 0;
+});
+
+
+router.post('/formula-list/:id', function(req, res){
+    var db = req.db.collection('formulas');
+    var id = new ObjectID(req.params.id);
+    var formula = data;
+
+    db.updateOne({"_id": id}, { $set: {
+      "name": req.body.name,
+      "description": req.body.description,
+      "formula": formula
+    }}, function(err, r){
+        assert.equal(null, err);
+        assert.equal(1, r.matchedCount);
+        assert.equal(1, r.modifiedCount);
+        req.db.close();
+    });
+    data.length = 0;
+});
+
 //initiated when you hit the 'Delete' button for a formula
 //on /formula-list
 router.delete('/formula-list/:id', function(req, res){
