@@ -68,6 +68,8 @@ var contact = require('./routes/contact');
 var formula = require('./routes/formula');
 var formulaAPI = require('./routes/api/formula');
 var formulaList = require('./routes/formula-list');
+var register = require('./routes/register');
+var login = require('./routes/login');
 
 
 app.use(root);
@@ -76,7 +78,8 @@ app.use(contact);
 app.use(formula);
 app.use(formulaAPI);
 app.use(formulaList);
-app.use(authenticate);
+app.use(register);
+app.use(login);
 
 app.set('port', (process.env.PORT || 3000));
 

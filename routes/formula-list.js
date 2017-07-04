@@ -35,6 +35,7 @@ router.post('/formula-list', function(req, res){
     }, function(err, r) {
         assert.equal(null, err);
         assert.equal(1, r.insertedCount);
+        req.db.close();
     });
     data.length = 0;
 });
@@ -67,6 +68,7 @@ router.delete('/formula-list/:id', function(req, res){
   db.deleteOne(query, function(err, r){
     assert.equal(null, err);
     assert.equal(1, r.deletedCount);
+    req.db.close();
   });
   res.end();
 });

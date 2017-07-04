@@ -3,7 +3,12 @@
         <ul class="pure-menu-list">
           <li class="pure-menu-item"><a href="/formula" class="pure-menu-link padded-top">Build A Formula</a></li>
           <li class="pure-menu-item"><a href="/formula-list" class="pure-menu-link padded-top">Your Formulas</a></li>
-          <li class="pure-menu-item"><p class="padded-top"><%= user.email %> <a href="/logout" class="pure-menu-link">(Log Out)</a></p></li>
+          <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
+            <a href="#" id="menuLink1" class="pure-menu-link padded-top"><%= user.name %></a>
+            <ul class="pure-menu-children">
+              <li class="pure-menu-item"><a href="/logout" class="pure-menu-link full-width">Log Out</a></li>
+              <li class="pure-menu-item"><a href="/profile" class="pure-menu-link full-width">Your Profile</a></li>
+            </ul>
         </ul>
         <% } %>
         <% if (!loggedIn) { %>
