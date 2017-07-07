@@ -1,4 +1,4 @@
-/*var app = require('express');
+var app = require('express');
 var router = app.Router();
 var assert = require('assert');
 var bcrypt = require('bcrypt');
@@ -111,7 +111,7 @@ passport.deserializeUser(function(id, done) {
     if (e) {return next(e);}
     var col = db.collection("users");
     col.findOne({"username": id}, function(err, user){
-      done(err, {"username": id, "name": user.name, "password": user.password, "formulas": user.formulas});
+      done(err, {"id": user._id, "username": id, "name": user.name, "password": user.password, "formulas": user.formulas});
     });
   });
 });
@@ -154,7 +154,7 @@ router.get('/login', function(req, res){
 });
 
 router.post('/login',
-    passport.authenticate('local', {successRedirect:'/', failureRedirect: '/login', failureFlash: true}),
+    passport.authenticate('local', {failureFlash: true}),
   function(req, res){
     console.log(req.user);
     console.log("The user was logged");
@@ -166,4 +166,3 @@ router.get('/logout', function(req, res){
 });
 
 module.exports = router;
-*/

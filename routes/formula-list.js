@@ -42,6 +42,7 @@ router.post('/formula-list', function(req, res){
 
 
 router.post('/formula-list/:id', function(req, res){
+    console.log(req.params);
     var db = req.db.collection('formulas');
     var id = new ObjectID(req.params.id);
     var formula = data;

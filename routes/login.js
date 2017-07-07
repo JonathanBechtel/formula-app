@@ -15,7 +15,7 @@ passport.deserializeUser(function(id, done) {
     if (e) {return next(e);}
     var col = db.collection("users");
     col.findOne({"username": id}, function(err, user){
-      done(err, {"username": id, "name": user.name, "password": user.password, "formulas": user.formulas});
+      done(err, {"id": user._id, "username": id, "name": user.name, "password": user.password, "formulas": user.formulas});
     });
   });
 });
@@ -57,8 +57,22 @@ router.get('/login', function(req, res){
   });
 });
 
-router.post('/login',
-    passport.authenticate('local', {successRedirect:'/', failureRedirect: '/login', failureFlash: true}));
+router.post('/login', function(req, res, next) {
+  passport.authenticate('local', function(err, user, info) {
+    if (err) { return next(err); }
+    if (!user) { return res.redirect('/login'); }
+    req.logIn(user, function(err) {
+      if (err) { return next(err); }
+      return res.redirect('/users/' + user.username.substring(0, user.username.indexOf('@')));
+    });
+  })(req, res, next);
+});
+
+/*router.post('/login',
+    passport.authenticate('local', {successRedirect: '/', failureRedirect: '/login', failureFlash: true}),
+    function(req, res){
+      console.log(req.session);
+    });*/
 
 router.get('/logout', function(req, res){
 	req.logout();
