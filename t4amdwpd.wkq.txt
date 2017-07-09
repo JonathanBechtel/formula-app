@@ -1,0 +1,11 @@
+﻿
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Changes to be committed:
+#	modified:   routes/authenticate.js
+#	modified:   routes/formula-list.js
+#	modified:   routes/index.js
+#	modified:   routes/login.js
+#
+

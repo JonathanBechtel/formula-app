@@ -5,7 +5,7 @@ var assert = require('assert');
 var ObjectID = require('mongodb').ObjectID;
 
 //retrieves all formulas and displays them
-router.get('/formula-list', function(req, res){
+router.get('/users/:username/formula-list', function(req, res){
   var db = req.db.collection('formulas');
   db.find({}).toArray(function(e, docs){
     if (e) {

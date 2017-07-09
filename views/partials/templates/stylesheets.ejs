@@ -6,16 +6,22 @@
         <link rel="stylesheet" href="https://unpkg.com/purecss@0.6.1/build/grids-responsive-min.css">
     <!--<![endif]-->
 
-<link rel="stylesheet/less" type="text/css" href="../stylesheets/global.less" />
-<link rel="stylesheet/less" type="text/css" href="../stylesheets/modules.less" />
-<link rel="stylesheet/less" type="text/css" href="../stylesheets/templates/nav.less" />
+<% if (loggedIn) { %>
+  <link rel="stylesheet/less" type="text/css" href="../../stylesheets/global.less" />
+  <link rel="stylesheet/less" type="text/css" href="../../stylesheets/modules.less" />
+  <link rel="stylesheet/less" type="text/css" href="../../stylesheets/templates/nav.less" />
+  <% } else { %>
+    <link rel="stylesheet/less" type="text/css" href="../stylesheets/global.less" />
+    <link rel="stylesheet/less" type="text/css" href="../stylesheets/modules.less" />
+    <link rel="stylesheet/less" type="text/css" href="../stylesheets/templates/nav.less" />
+    <% } %>
 
 <% if (ID == 'formula') { %>
-  <link rel="stylesheet/less" type ="text/css" href="../stylesheets/content/formula.less">
+  <link rel="stylesheet/less" type ="text/css" href="../../stylesheets/content/formula.less">
 <% } %>
 
 <% if (ID == 'formula-list') { %>
-  <link rel="stylesheet/less" type ="text/css" href="../stylesheets/content/formula-list.less">
+  <link rel="stylesheet/less" type ="text/css" href="../../stylesheets/content/formula-list.less">
 <% } %>
 
 <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.7.1/less.min.js"></script>
