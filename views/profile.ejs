@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include partials/templates/header.ejs %>
+    <% include partials/templates/stylesheets.ejs %>
+  </head>
+    <% include partials/templates/menu-not-signed-in.ejs %>
+
+<body id="<%= ID %>">
+  <% if (!profileChanged) { %>
+      <h1 class="centered"><%= title %></h1>
+      <p class="centered"><%= description %></p>
+  <%  } else { %>
+      <h1 class="centered">Your Profile Changes Have Been Updated</h1>
+      <p class="centered">You will have to log back in to see the changes.  <a href="/logout">Log out.</a></p>
+  <%  } %>
+
+    <div class="content">
+
+      <div class="pure-u-1 pure-u-md-3-4 pure-u-xl-1-2">
+        <div class="centered">
+          <% if (errors) { %>
+            <%  errors.forEach(function(item){ %>
+                  <div class="message">
+                    <p><%= item.msg %></p><br />
+                  </div>
+            <%  }); %>
+          <%  } %>
+        </div>
+      </div>
+
+      <% include partials/content/profile-update-form.ejs %>
+    </div>
+
+  </body>
+</html>

@@ -3,7 +3,6 @@ var router   = app.Router();
 var formulas = require('../../data/formula.json');
 
 router.get('/api/formula', function(req, res){
-  console.log("The response was received");
   res.json(formulas);
 });
 

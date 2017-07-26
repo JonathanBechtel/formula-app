@@ -77,22 +77,24 @@ router.post('/register', function(req, res){
                 db.insertOne({
                   "name": name,
                   "username": username,
+                  "activeEmail": username,
                   "password": hash,
                   "formulas": []
-                }, function(err, result){
+                }, function(err, r){
                     assert.equal(null, err);
-                    res.render('register', {
-                      errors: null,
-                      registered: true,
-                      title: 'Register to Become A User of the Formula Generator',
-                      description: 'Users of the Formula Generator can create, modify, and get prices on formulas',
-                      ID: 'register',
-                      keywords: 'formula generator, formula generator registration, supplement analyzer, formula generator signup form',
-                      user: req.user,
-                      loggedIn: req.isAuthenticated()
-                    });
+                    assert.equal(1, r.insertedCount);
                 });
               });
+            });
+            res.render('register', {
+              errors: null,
+              registered: true,
+              title: 'Register to Become A User of the Formula Generator',
+              description: 'Users of the Formula Generator can create, modify, and get prices on formulas',
+              ID: 'register',
+              keywords: 'formula generator, formula generator registration, supplement analyzer, formula generator signup form',
+              user: req.user,
+              loggedIn: req.isAuthenticated()
             });
           }
       });

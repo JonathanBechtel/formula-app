@@ -4,6 +4,8 @@ $(document).ready(function(){
   $.getJSON('/api/formula', updateIngredient);
 
   $('button').on('click', function(e){
+    console.log("Button clicked");
+    console.log("shoe");
     e.preventDefault();
     $.ajax({
       url:  (this.id) ? '/formula-list/' + this.id : '/formula-list',

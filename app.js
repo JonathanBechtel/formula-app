@@ -62,7 +62,7 @@ app.use(flash());
 
 //define routes
 var root = require('./routes/index');
-var authenticate = require('./routes/authenticate');
+//var authenticate = require('./routes/authenticate');
 var about = require('./routes/about');
 var contact = require('./routes/contact');
 var formula = require('./routes/formula');
@@ -70,7 +70,7 @@ var formulaAPI = require('./routes/api/formula');
 var formulaList = require('./routes/formula-list');
 var register = require('./routes/register');
 var login = require('./routes/login');
-
+var profile = require('./routes/profile');
 
 app.use(root);
 app.use(about);
@@ -80,6 +80,7 @@ app.use(formulaAPI);
 app.use(formulaList);
 app.use(register);
 app.use(login);
+app.use(profile);
 
 app.set('port', (process.env.PORT || 3000));
 

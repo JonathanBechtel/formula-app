@@ -15,7 +15,7 @@ passport.deserializeUser(function(id, done) {
     if (e) {return next(e);}
     var col = db.collection("users");
     col.findOne({"username": id}, function(err, user){
-      done(err, {"id": user._id, "username": id, "name": user.name, "password": user.password, "formulas": user.formulas});
+      done(err, {"id": user._id, "username": id, "activeEmail": user.activeEmail, "name": user.name, "password": user.password, "formulas": user.formulas});
     });
   });
 });
@@ -57,22 +57,13 @@ router.get('/login', function(req, res){
   });
 });
 
-router.post('/login', function(req, res, next) {
-  passport.authenticate('local', function(err, user, info) {
-    if (err) { return next(err); }
-    if (!user) { return res.redirect('/login'); }
-    req.logIn(user, function(err) {
-      if (err) { return next(err); }
-      return res.redirect('/users/' + user.username.substring(0, user.username.indexOf('@')));
-    });
-  })(req, res, next);
-});
-
-/*router.post('/login',
-    passport.authenticate('local', {successRedirect: '/', failureRedirect: '/login', failureFlash: true}),
-    function(req, res){
-      console.log(req.session);
-    });*/
+router.post('/login',
+  passport.authenticate('local', {failureRedirect: '/login', failureFlash: true}),
+  function(req, res) {
+    // If this function gets called, authentication was successful.
+    // `req.user` contains the authenticated user.
+    res.redirect('/users/' + user.username.substring(0, user.username.indexOf('@')));
+  });
 
 router.get('/logout', function(req, res){
 	req.logout();

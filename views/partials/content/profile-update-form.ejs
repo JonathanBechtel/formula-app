@@ -1,0 +1,45 @@
+<form class="pure-form pure-form-aligned" id="profile-update-form" action="/users/<%=user.username.substring(0, user.username.indexOf('@'))%>/profile/<%= user.id %>" method="post">
+
+  <fieldset>
+      <legend><strong>Update Your Name/E-mail</strong></legend>
+      <div class="pure-control-group">
+        <label for="name">Your Name:</label>
+        <input type="text" pattern=".{2,35}" title="2 to 35 characters" name="name" id="name" required="true" value="<%=user.name %>" />
+      </div>
+
+      <div class="pure-control-group">
+        <label for="username">Registration E-mail:</label>
+        <input type="email" name="username" id="username" readonly="true" value="<%= user.username %>" />
+        <span class="pure-form-message-inline">This cannot be changed.</span>
+      </div>
+
+      <div class="pure-control-group">
+        <label for="username">Where you'd like messages sent:</label>
+        <input type="email" name="activeEmail" id="activeEmail" required="true" value="<%= user.activeEmail %>" /><br />
+      </div>
+
+      <legend><strong>Update Your Password</strong></legend>
+        <label for="changePassword" class="vertically-aligned"><input type="checkbox" class="vertically-aligned" id="changePassword" name="changePassword"><span>    Yes, change my password.</span></label>
+
+      <div class="pure-control-group">
+        <label for="oldPassword">Original Password</label>
+        <input type="password" pattern=".{8,24}" title="8 to 24 characters" name="oldPassword" id="oldPassword" placeholder="Your Old Password"/>
+      </div>
+
+      <div class="pure-control-group">
+        <label for="newPassword">New Password:</label>
+        <input type="password" pattern=".{8,24}" title="8 to 24 characters" name="newPassword" id="newPassword" placeholder="Your New Password" />
+        <span class="pure-form-message-inline">8-24 characters, 1 number, 1 letter, 1 special character.</span>
+      </div>
+
+      <div class="pure-control-group">
+        <label for="newPassword2">Repeat New Password:</label>
+        <input type="password" pattern=".{8,24}" title="8 to 24 characters" name="newPassword2" id="newPassword2" placeholder="Your New Password Again"/>
+      </div>
+
+      <div class="centered">
+        <input type="submit" value="Update Your Information" class="pure-button"></input>
+      </div>
+    </fieldset>
+
+</form>

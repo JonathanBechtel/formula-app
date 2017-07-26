@@ -6,13 +6,13 @@ var ObjectID = require('mongodb').ObjectID;
 
 //retrieves all formulas and displays them
 router.get('/users/:username/formula-list', function(req, res){
-  var db = req.db.collection('formulas');
-  db.find({}).toArray(function(e, docs){
+  var db = req.db.collection('users');
+  db.find({"_id": new ObjectID(req.user.id)}, {formulas: 1, _id: 0}).toArray(function(e, docs){
     if (e) {
       throw e;
     } else {
       res.render('formula-list', {
-        formulas: docs,
+        formulas: docs[0].formulas,
         title: 'Your Formulas',
         description: `List of saved user formulas from the formula generator`,
         ID: 'formula-list',
@@ -24,34 +24,37 @@ router.get('/users/:username/formula-list', function(req, res){
   });
 });
 
+//for formulas new users make that aren't signed in
 router.post('/formula-list', function(req, res){
-    var db = req.db.collection('formulas');
+    var db = req.db.collection('users');
     var formula = data;
-
-    db.insertOne({
-      "name": req.body.name,
-      "description": req.body.description,
-      "formula": formula
-    }, function(err, r) {
-        assert.equal(null, err);
-        assert.equal(1, r.insertedCount);
-        req.db.close();
+    db.findOneAndUpdate({"_id": req.user.id }, {
+      $push: {
+        formulas: {
+          "f_id": new ObjectID(),
+          "name": req.body.name,
+          "description": req.body.description,
+          "ingredients": data
+        }
+      }
     });
     data.length = 0;
 });
 
-
+//when signed in users make an update  to an existing formula
 router.post('/formula-list/:id', function(req, res){
-    console.log(req.params);
-    var db = req.db.collection('formulas');
-    var id = new ObjectID(req.params.id);
+    var db = req.db.collection('users');
+    var f_id = new ObjectID(req.params.id);
+    var id = new ObjectID(req.user.id);
+
     var formula = data;
 
-    db.updateOne({"_id": id}, { $set: {
-      "name": req.body.name,
-      "description": req.body.description,
-      "formula": formula
-    }}, function(err, r){
+    db.updateOne({"_id": id, "formulas.f_id": f_id}, {
+      $set: {
+      "formulas.$.name": req.body.name,
+      "formulas.$.description": req.body.description,
+      "formulas.$.ingredients": formula
+      }}, function(err, r){
         assert.equal(null, err);
         assert.equal(1, r.matchedCount);
         assert.equal(1, r.modifiedCount);
@@ -60,46 +63,18 @@ router.post('/formula-list/:id', function(req, res){
     data.length = 0;
 });
 
-//initiated when you hit the 'Delete' button for a formula
-//on /formula-list
+//initiated when you hit the 'Delete' button for a formula at /users/:username/formula-list
 router.delete('/formula-list/:id', function(req, res){
-  var db = req.db.collection('formulas');
-  var id = new ObjectID(req.params.id);
-  var query = { "_id": id };
-  db.deleteOne(query, function(err, r){
-    assert.equal(null, err);
-    assert.equal(1, r.deletedCount);
-    req.db.close();
-  });
+  var db = req.db.collection('users');
+  var f_id = new ObjectID(req.params.id);
+  db.updateOne({"_id": new ObjectID(req.user.id)}, { $pull: {
+    "formulas": {"f_id": f_id}
+    }}, function(err, r){
+                 assert.equal(null, err);
+                 assert.equal(1, r.modifiedCount);
+                 req.db.close();
+               });
   res.end();
 });
-
-//initiated when you hit the 'show' button for a formula
-//on /formula-list
-router.get('/formula/:id', function(req, res){
-  data.length = 0;
-  var db = req.db.collection('formulas');
-  var id = new ObjectID(req.params.id);
-  var query = {"_id": id};
-  db.find(query).toArray(function(e, doc){
-    if (e) {
-      throw e;
-    } else {
-      console.log(doc);
-      doc[0].formula.forEach(function(item){
-        data.push(item);
-      });
-      res.render('formula', {
-        project: doc[0],
-        title: 'Modify and edit your formula',
-        description:  'Build and manage nutraceutical formulas',
-        ID: 'formula',
-        keywords: 'formula builder, formula analyzer, nutraceutical supplement analysis',
-        user: req.user,
-        loggedIn: req.isAuthenticated()
-        });
-      }
-    });
-  });
 
 module.exports = router;
