@@ -61,8 +61,7 @@ router.post('/login',
   passport.authenticate('local', {failureRedirect: '/login', failureFlash: true}),
   function(req, res) {
     // If this function gets called, authentication was successful.
-    // `req.user` contains the authenticated user.
-    res.redirect('/users/' + user.username.substring(0, user.username.indexOf('@')));
+    res.redirect('/users/' + req.user.username.substring(0, req.user.username.indexOf('@')));
   });
 
 router.get('/logout', function(req, res){

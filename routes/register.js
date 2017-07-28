@@ -2,6 +2,7 @@ var app = require('express');
 var router = app.Router();
 var assert = require('assert');
 var bcrypt = require('bcrypt');
+var message = require('../models/mailer.js')
 
 router.get('/register', function(req, res){
   res.render('register', {
@@ -96,6 +97,7 @@ router.post('/register', function(req, res){
               user: req.user,
               loggedIn: req.isAuthenticated()
             });
+            message.welcome(username);  //send welcome e-mail
           }
       });
     }
