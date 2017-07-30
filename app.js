@@ -62,7 +62,6 @@ app.use(flash());
 
 //define routes
 var root = require('./routes/index');
-//var authenticate = require('./routes/authenticate');
 var about = require('./routes/about');
 var contact = require('./routes/contact');
 var formula = require('./routes/formula');
@@ -71,6 +70,7 @@ var formulaList = require('./routes/formula-list');
 var register = require('./routes/register');
 var login = require('./routes/login');
 var profile = require('./routes/profile');
+var forgotPassword = require('./routes/forgot-password');
 
 app.use(root);
 app.use(about);
@@ -81,6 +81,7 @@ app.use(formulaList);
 app.use(register);
 app.use(login);
 app.use(profile);
+app.use(forgotPassword);
 
 app.set('port', (process.env.PORT || 3000));
 
