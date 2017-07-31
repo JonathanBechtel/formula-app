@@ -2,7 +2,7 @@ var app = require('express');
 var router = app.Router();
 var assert = require('assert');
 var bcrypt = require('bcrypt');
-var message = require('../models/mailer.js')
+var message = require('../models/mailer.js');
 
 router.get('/register', function(req, res){
   res.render('register', {
@@ -80,6 +80,10 @@ router.post('/register', function(req, res){
                   "username": username,
                   "activeEmail": username,
                   "password": hash,
+                  "passwordReset": {
+                    "token": null,
+                    "created": null
+                  },
                   "formulas": []
                 }, function(err, r){
                     assert.equal(null, err);

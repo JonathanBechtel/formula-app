@@ -10,6 +10,8 @@ var session = require('express-session');
 var bcrypt = require('bcrypt');
 var flash = require('connect-flash');
 
+
+//define middleware
 app.use(cookieParser());
 // Express Session
 app.use(session({
@@ -18,13 +20,13 @@ app.use(session({
   saveUninitialized: false
   }));
 
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 //initialize passport for app
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(flash());
 
 // make mongodb available to the application
 app.use((req, res, next) => {
@@ -57,9 +59,6 @@ app.use(expressValidator({
   }
 }));
 
-// Connect Flash
-app.use(flash());
-
 //define routes
 var root = require('./routes/index');
 var about = require('./routes/about');
@@ -71,6 +70,7 @@ var register = require('./routes/register');
 var login = require('./routes/login');
 var profile = require('./routes/profile');
 var forgotPassword = require('./routes/forgot-password');
+var resetPassword = require('./routes/reset-password');
 
 app.use(root);
 app.use(about);
@@ -82,6 +82,7 @@ app.use(register);
 app.use(login);
 app.use(profile);
 app.use(forgotPassword);
+app.use(resetPassword);
 
 app.set('port', (process.env.PORT || 3000));
 
