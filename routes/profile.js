@@ -21,7 +21,6 @@ router.post('/users/:username/profile/:id', function(req, res) {
   //declare all form variables
   var name = req.body.name;
   var username = req.body.username;
-  var activeEmail = req.body.activeEmail;
   var oldPassword = req.body.oldPassword;
   var newPassword = req.body.newPassword;
   var newPassword2 = req.body.newPassword2;
@@ -36,8 +35,6 @@ router.post('/users/:username/profile/:id', function(req, res) {
   req.checkBody('name', 'Your name must be between 2 and 35 characters').isLength({min: 2, max: 35});
   req.checkBody('username', 'Please enter a valid e-mail address').isEmail();
   req.checkBody('username', 'The e-mail field cannot be empty.').notEmpty();
-  req.checkBody('activeEmail', 'Please enter a valid e-mail address').isEmail();
-  req.checkBody('activeEmail', 'The e-mail field cannot be empty.').notEmpty();
 
   //if user indicates that they'd like to change their password, validate existing and proposed password fields
   if (changePassword === 'on') {
@@ -48,9 +45,7 @@ router.post('/users/:username/profile/:id', function(req, res) {
     req.checkBody('newPassword2', 'Your new passwords do not match.').equals(newPassword);
   }
 
-
   var errors = req.validationErrors();
-  console.log(errors);
 
   //if errors, display the page w/ error messages
   if (errors) {
@@ -71,15 +66,15 @@ router.post('/users/:username/profile/:id', function(req, res) {
       db.updateOne({"_id": new ObjectID(req.user.id)}, {
         $set: {
           "name": name,
-          "username": username,
-          "activeEmail": activeEmail
+          "username": username
         }
       }, function(err, r) {
           assert.equal(null, err);
           assert.equal(1, r.matchedCount);
-          //assert.equal(1, r.modifiedCount);
-          req.db.close();
+          assert.equal(1, r.modifiedCount);
       });
+      req.user.name = name;
+      //req.user.username = username;
       res.render('profile', {
         profileChanged: true,
         errors: null,
@@ -115,14 +110,12 @@ router.post('/users/:username/profile/:id', function(req, res) {
                   $set: {
                     "name": name,
                     "username": username,
-                    "activeEmail": activeEmail,
                     "password": hash
                   }
                 }, function(err, r) {
                     assert.equal(null, err);
                     assert.equal(1, r.matchedCount);
                     assert.equal(1, r.modifiedCount);
-                    req.db.close();
                 });
               });
             });
@@ -130,7 +123,7 @@ router.post('/users/:username/profile/:id', function(req, res) {
               profileChanged: true,
               errors: null,
               title: 'Your Profile Changes Have Been Updated',
-              description: 'You will have to log back in to see the changes',
+              description: 'You might have to log back in to see the changes',
               ID: 'profile-page-changed',
               keywords: 'formula generator profile page',
               user: req.user,

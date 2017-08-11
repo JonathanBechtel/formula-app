@@ -4,13 +4,7 @@
     <% include partials/templates/header.ejs %>
     <% include partials/templates/stylesheets.ejs %>
   </head>
-  <% if (!loggedIn) { %>
-    <body id="<%= ID %>">
-  <% } else if (loggedIn && !project) { %>
-    <body id="<%= user.id %>">
-  <% } else { %>
-      <body id="<%= project.f_id %>">
-   <% } %>
+  <body id="<%= ID %>">
     <% include partials/templates/menu-not-signed-in.ejs %>
     <h1 class="centered"><%= title %></h1>
     <p class="centered">Enter the ingredients for your formula below.</p>
@@ -20,11 +14,34 @@
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 
     <% if (!loggedIn) { %>
+      <script src="../javascripts/storage.js"></script>
       <script src="../javascripts/formula-api.js"></script>
+      <script src="../javascripts/bootstrap.min.js"></script>
     <% } else { %>
         <script src="../../../javascripts/formula-api.js"></script>
     <% } %>
 
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Modal -->
+    <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="myModalLabel">You might want to log in/register.</h4>
+          </div>
+          <div class="modal-body">
+            <p>You're making a formula right now, but your browser won't allow us to store it for later use.</p>
+            <p>For this reason it might be best to log in or register for an account before proceeding.</p>
+          </div>
+          <div class="modal-footer">
+            <a href="/login" class="pure-button pure-button-active button-success not-decorated">Log In</a>
+            <a href="/register" class="pure-button pure-button-active button-secondary not-decorated">Register</a>
+            <button type="button" class="pure-button button-error" data-dismiss="modal">No thanks, I'll keep going.</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </body>
 </html>

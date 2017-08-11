@@ -1,8 +1,8 @@
 <form class="centered formula-form">
   <label for="project">Formula Name:</label>
-    <input type="text" id="project" placeholder="Name your project" <% if (project !== null) { %> value="<%= project.name %>" <% } %> maxlength="20" required />
+    <input type="text" id="project" name="project" placeholder="Name your project" <% if (project !== null) { %> value="<%= project.name %>" <% } %> maxlength="20" required />
   <label for="description">Description:</label>
-    <input type="text" id="description" placeholder="Give it a brief description" <% if (project !== null) { %> value="<%= project.description %>" <% } %> maxlength="35" required /> <br /> <br />
+    <input type="text" id="description" name="description" placeholder="Give it a brief description" <% if (project !== null) { %> value="<%= project.description %>" <% } %> maxlength="35" required /> <br /> <br />
   <label for="name">Name:</label>
     <input type="text" id="name" placeholder="Ingredient Name" required  />
   <label for="amount">Amount (mg):</label>

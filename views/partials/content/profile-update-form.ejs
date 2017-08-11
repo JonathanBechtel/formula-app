@@ -8,14 +8,8 @@
       </div>
 
       <div class="pure-control-group">
-        <label for="username">Registration E-mail:</label>
-        <input type="email" name="username" id="username" readonly="true" value="<%= user.username %>" />
-        <span class="pure-form-message-inline">This cannot be changed.</span>
-      </div>
-
-      <div class="pure-control-group">
-        <label for="username">Where you'd like messages sent:</label>
-        <input type="email" name="activeEmail" id="activeEmail" required="true" value="<%= user.activeEmail %>" /><br />
+        <label for="username">Your E-mail:</label>
+        <input type="email" name="username" id="username" value="<%= user.username %>" />
       </div>
 
       <legend><strong>Update Your Password</strong></legend>

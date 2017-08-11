@@ -9,7 +9,7 @@ router.get('/forgot-password', function(req, res) {
     errors: req.flash().error,
     title: 'Reset Your Password',
     description: 'Enter your e-mail below to receive a link to reset your password.',
-    ID: 'Reset your password',
+    ID: 'forgot-password',
     keywords: 'password reset, formula generator, formula generator forgotten password',
     loggedIn: req.isAuthenticated()
   });
@@ -21,7 +21,9 @@ router.post('/forgot-password', function(req, res){
   var token = crypto.randomBytes(32).toString('hex');
   var rightNow = new Date().valueOf();
 
-  db.findOneAndUpdate({"username": email}, {$set: {"passwordReset.token": token, "passwordReset.created": rightNow}}, function(err, user){
+  db.findOneAndUpdate({"username": email}, {$set: {"passwordReset.token": token, "passwordReset.created": rightNow}}, function(err, result){
+    var user = result.value;
+    console.log(user);
     if (err) {
       throw err;
     };
@@ -33,7 +35,7 @@ router.post('/forgot-password', function(req, res){
         emailFound: true,
         title: 'Request Received.  Please Check E-mail',
         description: 'Check the e-mail you entered in the form to find the link to reset your password.',
-        ID: 'Reset your password',
+        ID: 'forgot-password',
         keywords: 'password reset, formula generator, formula generator forgotten password',
         loggedIn: req.isAuthenticated(),
         });

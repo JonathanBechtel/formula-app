@@ -52,7 +52,7 @@ router.get('/users/:username/formula/:id', function(req, res){
         project: doc[0].formulas,
         title: 'Modify and edit your formula',
         description:  'Build and manage nutraceutical formulas',
-        ID: 'formula',
+        ID: 'formula-saved',
         keywords: 'formula builder, formula analyzer, nutraceutical supplement analysis',
         user: req.user,
         loggedIn: req.isAuthenticated()

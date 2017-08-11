@@ -15,6 +15,8 @@ passport.deserializeUser(function(id, done) {
     if (e) {return next(e);}
     var col = db.collection("users");
     col.findOne({"username": id}, function(err, user){
+      console.log("The error message is: ", err);
+      console.log("The user:", user);
       done(err, {"id": user._id, "username": id, "activeEmail": user.activeEmail, "name": user.name, "password": user.password, "formulas": user.formulas});
     });
   });
@@ -60,7 +62,6 @@ router.get('/login', function(req, res){
 router.post('/login',
   passport.authenticate('local', {failureRedirect: '/login', failureFlash: true}),
   function(req, res) {
-    // If this function gets called, authentication was successful.
     res.redirect('/users/' + req.user.username.substring(0, req.user.username.indexOf('@')));
   });
 
