@@ -11,7 +11,7 @@ $(document).ready(function(){
       type: 'POST',
       data: {
         name: $('#project').val(),
-        description: $('#description').val()
+        description: $('#description').val(),
         numContainer: null,
         typeContainer: null,
         price: null,
