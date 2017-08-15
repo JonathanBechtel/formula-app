@@ -15,8 +15,6 @@ passport.deserializeUser(function(id, done) {
     if (e) {return next(e);}
     var col = db.collection("users");
     col.findOne({"username": id}, function(err, user){
-      console.log("The error message is: ", err);
-      console.log("The user:", user);
       done(err, {"id": user._id, "username": id, "activeEmail": user.activeEmail, "name": user.name, "password": user.password, "formulas": user.formulas});
     });
   });
@@ -67,6 +65,7 @@ router.post('/login',
 
 router.get('/logout', function(req, res){
 	req.logout();
+  delete req.session.passport; //this is to avoid complications w/line 33 on formula-list.js
 	res.redirect('/');
 });
 

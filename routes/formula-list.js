@@ -26,19 +26,46 @@ router.get('/users/:username/formula-list', function(req, res){
 
 //for formulas new users make that aren't signed in
 router.post('/formula-list', function(req, res){
-    var db = req.db.collection('users');
-    var formula = data;
-    db.findOneAndUpdate({"_id": req.user.id }, {
-      $push: {
-        formulas: {
-          "f_id": new ObjectID(),
-          "name": req.body.name,
-          "description": req.body.description,
-          "ingredients": data
+    var ingredients = data;
+    var name = req.body.name;
+    var description = req.body.description;
+    var numContainer = req.body.numContainer;
+    var typeContainer = req.body.typeContainer;
+    var price = req.body.price;
+    var servings = req.body.servings;
+
+    if (req.session.passport) {
+      var db = req.db.collection('users');
+      var id = new ObjectID(req.user.id);
+      db.update({"_id": id},
+        {
+          $push: {
+            formulas: {
+              "f_id": new ObjectID(),
+              "name": name,
+              "description": description,
+              "numContainer": numContainer,
+              "typeContainer": typeContainer,
+              "price": price,
+              "servings": servings,
+              "ingredients": ingredients
+              }
+            }
+          }, function(err, r) {
+            if (err) {throw err;}
+        });
+    } else {
+      req.session.temp_formula = {};
+      req.session.temp_formula.name = name;
+      req.session.temp_formula.description = description;
+      req.session.temp_formula.ingredients = ingredients;
+      //data.length = 0; -- will look into;
+      req.session.save(function(err){
+        if(err) {
+          throw err;
         }
-      }
-    });
-    data.length = 0;
+      });
+    }
 });
 
 //when signed in users make an update  to an existing formula

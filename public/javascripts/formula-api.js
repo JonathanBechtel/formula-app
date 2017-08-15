@@ -12,6 +12,10 @@ $(document).ready(function(){
       data: {
         name: $('#project').val(),
         description: $('#description').val()
+        numContainer: null,
+        typeContainer: null,
+        price: null,
+        servings: null
       }
     });
     $('.formula-body').empty();
@@ -24,7 +28,11 @@ $(document).ready(function(){
     $.post('/api/formula', {
           name: $('#name').val(),
           amount: $('#amount').val(),
-          notes: $('#notes').val()
+          notes: $('#notes').val(),
+          percentCarrier: null,
+          costPerKilo: null,
+          source: null,
+          packSize: null
     }, updateIngredient);
     $('#name, #amount, #notes').val("");
   });
