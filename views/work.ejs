@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include partials/templates/header.ejs %>
+    <% include partials/templates/stylesheets.ejs %>
+  </head>
+  <body id="<%= ID %>">
+    <% include partials/templates/menu-not-signed-in.ejs %>
+    <h1 class="centered"><%= title %></h1>
+    <h4 class="centered">Need help with your project?  We might be a good fit to work together.</h4>
+    <div class="content">
+        <p>If time permits we can help select clients for project-based work.</p>
+        <p>We take on projects in the following areas:</p>
+        <ul>
+          <li><strong>Formulation</strong> - Researching, sourcing, and pricing the right ingredients to make your product unique and validated.</li>
+          <li><strong>Project Management</strong> - Taking the reigns to ensure you get setup with the right manufacturer and overseeing its production.</li>
+          <li><strong>Ingredient Sourcing & Supply Chain Management</strong> - Finding the right suppliers to allow you to make the right label claims.</li>
+          <li><strong>Project Spec</strong> - Providing high level oversight on your project to understand its potential pitfalls and cost centers. Very helpful if you're just beginning and don't know where to start.</li>
+        </ul>
+    </div>
+    <div class="light-gray">
+      <blockquote>
+        I must say that finding Jonathan and Health Kismet was nothing short of Divine Intervention.  Like many of you, I repeatedly performed random Google searches in hopes of finding out as much information as possible about starting a Supplement Company.
+        However, my efforts netted one big truth — there really isn’t any clear and concise information on how to proceed with such a venture.
+        Well the day that I found Jonathan changed everything.<br />
+        <small class="centered"><strong>-- Green Regimen </strong></small>
+      </blockquote>
+    </div>
+    <div class="content">
+      <p>If you would like to get a better idea behind our body of work, you can checkout our <a href="http://consulting.healthkismet.com">main consulting page.</a></p>
+      <p>If you would like to get in touch about a project, please fill out our <a href="/contact">contact form.</a></p>
+    </div>
+    <% include partials/templates/footer.ejs %>
+  </body>
+</html>

@@ -26,13 +26,15 @@ router.get('/users/:username/formula-list', function(req, res){
 
 //for formulas new users make that aren't signed in
 router.post('/formula-list', function(req, res){
-    var ingredients = data;
-    var name = req.body.name;
-    var description = req.body.description;
-    var numContainer = req.body.numContainer;
-    var typeContainer = req.body.typeContainer;
-    var price = req.body.price;
-    var servings = req.body.servings;
+  console.log(req.body);
+    var ingredients   = data;
+    var name          = req.body.name;
+    var description   = req.body.description;
+    var numContainer  = req.body.numContainer;
+    var price         = req.body.price;
+    var servings      = req.body.servings;
+    var form          = req.body.form;
+    var timeframe     = req.body.timeframe;
 
     if (req.session.passport) {
       var db = req.db.collection('users');
@@ -41,24 +43,30 @@ router.post('/formula-list', function(req, res){
         {
           $push: {
             formulas: {
-              "f_id": new ObjectID(),
-              "name": name,
-              "description": description,
-              "numContainer": numContainer,
-              "typeContainer": typeContainer,
-              "price": price,
-              "servings": servings,
-              "ingredients": ingredients
+              "f_id"         : new ObjectID(),
+              "name"         : name,
+              "description"  : description,
+              "numContainer" : numContainer,
+              "form"         : form,
+              "price"        : price,
+              "servings"     : servings,
+              "ingredients"  : ingredients,
+              "timeframe"    : timeframe
               }
             }
           }, function(err, r) {
             if (err) {throw err;}
         });
     } else {
-      req.session.temp_formula = {};
-      req.session.temp_formula.name = name;
-      req.session.temp_formula.description = description;
-      req.session.temp_formula.ingredients = ingredients;
+      req.session.temp_formula               = {};
+      req.session.temp_formula.name          = name;
+      req.session.temp_formula.description   = description;
+      req.session.temp_formula.numContainer  = numContainer;
+      req.session.temp_formula.price         = price;
+      req.session.temp_formula.form          = form;
+      req.session.temp_formula.timeframe     = timeframe;
+      req.session.temp_formula.servings      = servings;
+      req.session.temp_formula.ingredients   = ingredients;
       //data.length = 0; -- will look into;
       req.session.save(function(err){
         if(err) {
@@ -70,36 +78,37 @@ router.post('/formula-list', function(req, res){
 
 //when signed in users make an update  to an existing formula
 router.post('/formula-list/:id', function(req, res){
-    var db = req.db.collection('users');
-    var f_id = new ObjectID(req.params.id);
-    var id = new ObjectID(req.user.id);
-
+    var db      = req.db.collection('users');
+    var f_id    = new ObjectID(req.params.id);
+    var id      = new ObjectID(req.user.id);
     var formula = data;
 
     db.updateOne({"_id": id, "formulas.f_id": f_id}, {
       $set: {
-      "formulas.$.name": req.body.name,
-      "formulas.$.description": req.body.description,
-      "formulas.$.ingredients": formula
+      "formulas.$.name"         : req.body.name,
+      "formulas.$.description"  : req.body.description,
+      "formulas.$.numContainer" : req.body.numContainer,
+      "formulas.$.price"        : req.body.price,
+      "formulas.$.form"         : req.body.form,
+      "formulas.$.timeframe"    : req.body.timeframe,
+      "formulas.$.servings"     : req.body.servings,
+      "formulas.$.ingredients" : formula
       }}, function(err, r){
-        assert.equal(null, err);
-        assert.equal(1, r.matchedCount);
-        assert.equal(1, r.modifiedCount);
-        req.db.close();
+        if(err) {
+          throw err;
+        }
     });
-    data.length = 0;
 });
 
 //initiated when you hit the 'Delete' button for a formula at /users/:username/formula-list
 router.delete('/formula-list/:id', function(req, res){
-  var db = req.db.collection('users');
-  var f_id = new ObjectID(req.params.id);
+  var db     = req.db.collection('users');
+  var f_id   = new ObjectID(req.params.id);
   db.updateOne({"_id": new ObjectID(req.user.id)}, { $pull: {
     "formulas": {"f_id": f_id}
     }}, function(err, r){
                  assert.equal(null, err);
                  assert.equal(1, r.modifiedCount);
-                 req.db.close();
                });
   res.end();
 });

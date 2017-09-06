@@ -1,21 +1,34 @@
   <div class="pure-menu pure-menu-horizontal">
         <% if (loggedIn) { %>
         <ul class="pure-menu-list">
-          <li class="pure-menu-item"><a href="/users/<%=user.username.substring(0, user.username.indexOf('@'))%>/formula" class="pure-menu-link padded-top">Build A Formula</a></li>
-          <li class="pure-menu-item"><a href="/users/<%=user.username.substring(0, user.username.indexOf('@'))%>/formula-list" class="pure-menu-link padded-top">Your Formulas</a></li>
+          <li class="pure-menu-item"><a href="#" class="pure-menu-heading custom-brand padded-top">Nutraceutical <strong><em>PRO</em></strong></a></li>
+          <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
+            <a href="#" id="menuLink1" class="pure-menu-link padded-top">Formulas</a>
+            <ul class="pure-menu-children">
+              <li class="pure-menu-item"><a href="/users/<%=user.username.substring(0, user.username.indexOf('@'))%>/formula" class="pure-menu-link padded-top">Build A Formula</a></li>
+              <li class="pure-menu-item"><a href="/users/<%=user.username.substring(0, user.username.indexOf('@'))%>/formula-list" class="pure-menu-link padded-top">Your Collection</a></li>
+            </ul>
+          </li>
+          <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
+            <a href="#" id="menuLink1" class="pure-menu-link padded-top">Help</a>
+            <ul class="pure-menu-children">
+              <li class="pure-menu-item"><a href="/contact" class="pure-menu-link padded-top">Contact</a></li>
+              <li class="pure-menu-item"><a href="/work" class="pure-menu-link padded-top">Work With Us</a></li>
+            </ul>
+          </li>
+          <li class="pure-menu-item"><a href="/suppliers" class="pure-menu-link padded-top">Suppliers</a></li>
           <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
             <a href="#" id="menuLink1" class="pure-menu-link padded-top"><%= user.name %></a>
             <ul class="pure-menu-children">
               <li class="pure-menu-item"><a href="/logout" class="pure-menu-link full-width">Log Out</a></li>
               <li class="pure-menu-item"><a href="/users/<%=user.username.substring(0, user.username.indexOf('@'))%>/profile" class="pure-menu-link full-width">Your Profile</a></li>
             </ul>
+          </li>
         </ul>
         <% } %>
         <% if (!loggedIn) { %>
           <ul class="pure-menu-list main-nav">
-            <li class="pure-menu-item"><a href="/" class="pure-menu-link padded-top">Home</a></li>
-            <li class="pure-menu-item"><a href="/about" class="pure-menu-link padded-top">About</a></li>
-            <li class="pure-menu-item"><a href="/contact" class="pure-menu-link padded-top">Contact</a></li>
+            <li class="pure-menu-item"><a href="/" class="pure-menu-heading custom-brand padded-top">Nutraceutical <strong><em>PRO</em></strong></a></li>
             <li class="pure-menu-item"><a href="/formula" class="pure-menu-link padded-top">Build A Formula</a></li>
             <li class="pure-menu-item"><a href="/register" class="pure-menu-link padded-top">Sign Up</a></li>
             <li class="pure-menu-item"><a href="/login" class="pure-menu-link padded-top">Log In</a></li>

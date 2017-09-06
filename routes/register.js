@@ -79,6 +79,8 @@ router.post('/register', function(req, res){
                   "name": name,
                   "username": username,
                   "activeEmail": username,
+                  "company": null,
+                  "phoneNumber": null,
                   "password": hash,
                   "passwordReset": {
                     "token": null,

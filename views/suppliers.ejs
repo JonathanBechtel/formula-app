@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include partials/templates/header.ejs %>
+    <% include partials/templates/stylesheets.ejs %>
+  </head>
+  <body id="<%= ID %>">
+    <% include partials/templates/menu-not-signed-in.ejs %>
+    <h1 class="centered"><%= title %></h1>
+    <p class="centered"><%= description %></p>
+
+    <div class="content">
+        <div class="pure-g">
+          <div class="pure-u-1 pure-u-md-1-8"></div>
+          <div class="pure-u-1 pure-u-md-6-8">
+            <div class="centered">
+              <h2>Ingredient Suppliers</h2>
+              <table class="pure-table pure-table-striped centered-block">
+                <thead>
+                  <th>Name</th>
+                  <th>Specialty</th>
+                  <th>Telephone</th>
+                  <th>Website</th>
+                  <th>Notes</th>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Green Wave Ingredients</td>
+                    <td>Functional Ingredients</td>
+                    <td>877-550-3600</td>
+                    <td><a href="http://www.ingredientsonline.com/">www.ingredientsonline.com</a></td>
+                    <td>Mostly imported, responsive service.</td>
+                  </tr>
+                  <tr>
+                    <td>Amazon Forest</td>
+                    <td>Botanicals</td>
+                    <td>973-584-3900</td>
+                    <td><a href="http://amazonforest.net/">amazonforest.net</a></td>
+                    <td>Distributor, wide selection, mostly imported, good service</td>
+                  </tr>
+                  <tr>
+                    <td>Jia Herb</td>
+                    <td>Botanicals</td>
+                    <td>888-542-4372</td>
+                    <td><a href="http://jiaherbinc.com/">jiaherbinc.com</a></td>
+                    <td>Distributor, wide selection, mostly from China, carries organics</td>
+                  </tr>
+                  <tr>
+                    <td>DSM</td>
+                    <td>Functional Ingredients</td>
+                    <td>N/A</td>
+                    <td><a href="http://www.dsm.com/corporate/markets-products/markets/food-and-beverages.html">www.dsm.com</a></td>
+                    <td>Massive footprint, good with scientific development, hard to work with, not always good for small companies</td>
+                  </tr>
+                  <tr>
+                    <td>Ecuadorian Rainforest</td>
+                    <td>Botanicals</td>
+                    <td>973-759-2002</td>
+                    <td><a href="http://www.intotherainforest.com/">www.intotherainforest.com</a></td>
+                    <td>Importer, mostly deals with South America</td>
+                  </tr>
+                  <tr>
+                    <td>Parchem</td>
+                    <td>Vitamins/Chemical Compounds</td>
+                    <td>800-282-3982</td>
+                    <td><a href="http://www.parchem.com/">www.parchem.com</a></td>
+                    <td>Vast selection, expensive, not all products suitable for human consumption.</td>
+                  </tr>
+                  <tr>
+                    <td>Albion</td>
+                    <td>Minerals</td>
+                    <td>800-453-2406</td>
+                    <td><a href="http://www.albionminerals.com/">www.albionminerals.com</a></td>
+                    <td>Specialize in amino acid chelates.</td>
+                  </tr>
+                  <tr>
+                    <td>Nutraex</td>
+                    <td>Sweeteners</td>
+                    <td>N/A</td>
+                    <td><a href="http://nutraex.com/">nutraex.com</a></td>
+                    <td>Specialize in customized flavoring solutions</td>
+                  </tr>
+                  <tr>
+                    <td>NPNutra</td>
+                    <td>Botanicals</td>
+                    <td>310-694-3031</td>
+                    <td><a href="http://www.npnutra.com/">www.npnutra.com</a></td>
+                    <td>Higher end supplier, carries a wide variety of organic ingredients</td>
+                  </tr>
+                  <tr>
+                    <td>AIDP</td>
+                    <td>Functional Ingredients</td>
+                    <td>866-262-6699</td>
+                    <td><a href="http://www.aidp.com/Home">www.aidp.com</a></td>
+                    <td>Have had good experience with these guys.  Good prices and small packsizes.</td>
+                  </tr>
+                  <tr>
+                    <td>Nutraceutix</td>
+                    <td>Probiotics</td>
+                    <td>425-883-9518</td>
+                    <td><a href="http://nutraceutix.com/">nutraceutix.com</a></td>
+                    <td>Probiotics manufacturer and supplier.</td>
+                  </tr>
+                  <tr>
+                    <td>Powder Pure</td>
+                    <td>Botanicals</td>
+                    <td>541-298-4800</td>
+                    <td><a href="http://www.powderpure.com/">www.powderpure.com</a></td>
+                    <td>Specialize in organics, use a proprietary drying method, which is important for botanicals.</td>
+                  </tr>
+                  <tr>
+                    <td>Sabinsa</td>
+                    <td>Functional Ingredients</td>
+                    <td>732-777-1111</td>
+                    <td><a href="http://www.sabinsa.com/">www.sabinsa.com</a></td>
+                    <td>Similar in scope to DSM and AIDP</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="pure-u-1 pure-u-md-1-8"></div>
+
+            <div class="centered">
+              <div class="pure-u-1 pure-u-md-1-8"></div>
+              <div class="pure-u-1 pure-u-md-6-8">
+                <h2>Manufacturers</h2>
+                <table class="pure-table pure-table-striped centered-block">
+                  <thead>
+                  <th>Name</th>
+                  <th>Capabilities</th>
+                  <th>Minimum Quantity</th>
+                  <th>Telephone</th>
+                  <th>Website</th>
+                  <th>Notes</th>
+                </thead>
+                  <tbody>
+                  <tr>
+                    <td>Bactolac</td>
+                    <td>Capsules, powders, tablets</td>
+                    <td>1,000 bottles</td>
+                    <td>1-800-585-2546</td>
+                    <td><a href="http://www.bactolac.com/">www.bactolac.com</a></td>
+                    <td>Usually responsive, quoted prices are usually competitive</td>
+                  </tr>
+                  <tr>
+                    <td>ABH Nature</td>
+                    <td>Capsules, powders, tablets</td>
+                    <td>150 Kilo</td>
+                    <td>855-875-2220</td>
+                    <td><a href="http://abhnature.com/index.htm">abhnature.com</a></td>
+                    <td>Family owned business, pleasant to work with, lots of experience.</td>
+                  </tr>
+                  <tr>
+                    <td>Lief Organics</td>
+                    <td>Capsules, powders, tablets</td>
+                    <td>None</td>
+                    <td>661-775-2500</td>
+                    <td><a href="http://lieflabs.com/">lieflabs.com</a></td>
+                    <td>They are pretty responsive and transparent, I've enjoyed working with them.</td>
+                  </tr>
+                  <tr>
+                    <td>Herbally Yours</td>
+                    <td>Capsules, powders, tablets</td>
+                    <td>Depends</td>
+                    <td>480-892-8220</td>
+                    <td><a href="http://www.herballyyours.net/">www.herballyyours.net</a></td>
+                    <td>Want to like these guys, but had a hard time getting anywhere with them.</td>
+                  </tr>
+                  <tr>
+                    <td>Uckele</td>
+                    <td>Capsules, powders, tablets</td>
+                    <td>None</td>
+                    <td>800-248-0330</td>
+                    <td><a href="http://contractmfg.uckele.com/human-manufacturing/human-formulation">contractmfg.ukele.com</a></td>
+                    <td>Reached out to them briefly, never went anywhere.</td>
+                  </tr>
+                  <tr>
+                    <td>Robinson Pharmaceuticals</td>
+                    <td>Capsules, powders, tablets</td>
+                    <td>500 Kilo</td>
+                    <td>714-241-0235</td>
+                    <td><a href="http://robinsonpharma.com/Home">robinsonpharma.com</a></td>
+                    <td>Large in-house capabilities, higher startup costs</td>
+                  </tr>
+                  <tr>
+                    <td>Protech Nutraceuticals</td>
+                    <td>Capsules, powders, tablets</td>
+                    <td>N/A</td>
+                    <td>727-466-0770</td>
+                    <td><a href="http://www.protechnutra.com/">www.protechnutra.com</a></td>
+                    <td>Good reputation within the industry.</td>
+                  </tr>
+                </tbody>
+                </table>
+              </div>
+              <div class="pure-u-1 pure-u-md-1-8"></div>
+            </div>
+          </div>
+      </div>
+      <div class="margin-top">
+        <% include partials/templates/footer.ejs %>
+      </div>
+  </body>
+</html>

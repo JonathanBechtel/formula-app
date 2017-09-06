@@ -1,30 +1,142 @@
-<form class="centered formula-form">
-  <label for="project">Formula Name:</label>
-    <input type="text" id="project" name="project" placeholder="Name your project" <% if (project !== null) { %> value="<%= project.name %>" <% } %> maxlength="20" required />
-  <label for="description">Description:</label>
-    <input type="text" id="description" name="description" placeholder="Give it a brief description" <% if (project !== null) { %> value="<%= project.description %>" <% } %> maxlength="35" required /> <br /> <br />
-  <label for="name">Name:</label>
-    <input type="text" id="name" placeholder="Ingredient Name" required  />
-  <label for="amount">Amount (mg):</label>
-    <input type="number" id="amount" placeholder="0" min="0" step="0.1" required />
-  <label for="notes">Notes:</label>
-    <input type="text" id="notes" placeholder="form, supplier, etc" />
-    <input type="submit" value="Add Ingredient" class="pure-button" />
-</form>
+<div class="content">
+  <div class="pure-g">
+    <div class="pure-u-1 pure-u-md-8-24">
+      <form class="pure-form pure-form-aligned" id="formula-info-form">
+          <fieldset>
+            <legend><h3>1). Your Project Info</h3></legend>
+              <div class="pure-control-group">
+                  <label for="name">Project Name</label>
+                  <input type="text" id="project" name="project" placeholder="Name your project" <% if (project !== null) { %> value="<%= project.name %>" <% } %> maxlength="20" required />
+              </div>
 
-<div class="centered">
-    <h2>Your Formula</h2>
-      <table class="centered-block pure-table pure-table-striped formula-table">
-        <thead class="thead-styled">
-          <tr class="centered">
-              <th>Ingredient</th>
-              <th>Amount</th>
-              <th>Notes</th>
-              <th></th>
-          </tr>
-        </thead>
-        <tbody class="formula-body">
-        </tbody>
-      </table>
-    <button type="submit" value="Submit" class="pure-button pure-button-primary formula-submit" <% if(project !== null) { %> id = "<%= project.f_id %>" <% } %>>Submit</button>
-  </div>
+              <div class="pure-control-group">
+                  <label for="password">Description</label>
+                  <input type="text" id="description" name="description" placeholder="Give it a brief description" <% if (project !== null) { %> value="<%= project.description %>" <% } %> maxlength="35" required />
+              </div>
+
+              <% if (project !== null) { %>
+                <div class="pure-control-group">
+                    <label for="timeframe">Timeframe: </label>
+                    <select name="timeframe" id="timeframe" required />
+                      <option value="Immediately"   <%= "Immediately" === project.timeframe ? "selected" : "" %>>Immediately</option>
+                      <option value="1 to 2 weeks"  <%= "1 to 2 weeks" === project.timeframe ? "selected" : "" %>>1 to 2 weeks</option>
+                      <option value="2 to 4 weeks"  <%= "2 to 4 weeks" === project.timeframe ? "selected" : "" %>>2 to 4 weeks</option>
+                      <option value="1-3 months"    <%= "1-3 months" === project.timeframe ? "selected" : "" %>>1-3 months</option>
+                      <option value="3+ months"     <%= "3+ months" === project.timeframe ? "selected" : "" %>>3+ months</option>
+                      <option value="No idea"       <%= "No idea" === project.timeframe ? "selected" : "" %>>No idea</option>
+                    </select>
+                 </div>
+              <%  } else { %>
+                <div class="pure-control-group">
+                    <label for="timeframe">Timeframe: </label>
+                    <select name="timeframe" id="timeframe" required />
+                      <option value="Immediately">Immediately</option>
+                      <option value="1 to 2 weeks">1 to 2 weeks</option>
+                      <option value="2 to 4 weeks">2 to 4 weeks</option>
+                      <option value="1-3 months">1-3 months</option>
+                      <option value="3+ months">3+ months</option>
+                      <option value="No idea">No idea</option>
+                    </select>
+                 </div>
+              <% } %>
+
+            <% if (project !== null) { %>
+              <div class="pure-control-group">
+                  <label for="form">Product Form</label>
+                  <select name="form" id="form" required />
+                    <option value="Capsule"      <%= "Capsule" === project.form ? "selected" : "" %>>Capsule</option>
+                    <option value="Tablet"       <%= "Tablet" === project.form ? "selected" : "" %>>Tablet</option>
+                    <option value="Powder"       <%= "Powder" === project.form ? "selected" : "" %>>Powder</option>
+                    <option value="Effervescent" <%= "Effervescent" === project.form ? "selected" : "" %>>Effervescent</option>
+                    <option value="Sachet"       <%= "Sachet" === project.form ? "selected" : "" %>>Sachet</option>
+                    <option value="Stick Pack"   <%= "Stick Pack" === project.form ? "selected" : "" %>>Stick Pack</option>
+                    <option value="Liquid"       <%= "Liquid" === project.form ? "selected" : "" %>>Liquid</option>
+                  </select>
+               </div>
+            <%  } else { %>
+              <div class="pure-control-group">
+                  <label for="form">Product Form</label>
+                  <select name="form" id="form" required />
+                    <option value="Capsule">Capsule</option>
+                    <option value="Tablet">Tablet</option>
+                    <option value="Powder">Powder</option>
+                    <option value="Effervescent">Effervescent</option>
+                    <option value="Sachet">Sachet</option>
+                    <option value="Stick Pack">Stick Pack</option>
+                    <option value="Liquid">Liquid</option>
+                  </select>
+               </div>
+            <% } %>
+
+
+              <div class="pure-control-group">
+                  <label for="servings">Servings/Container</label>
+                  <input type="number" name="servings" id="servings" placeholder="0" min="0" step="1" <% if (project !== null) { %> value="<%= project.servings %>" <% } %> required />
+              </div>
+
+              <div class="pure-control-group">
+                  <label for="price">Target $$/Container</label>
+                  <input type="number" name="price" id="price" placeholder="0" min="0" step="1" <% if (project !== null) { %> value="<%= project.price %>" <% } %> required />
+              </div>
+
+              <div class="pure-control-group">
+                  <label for="numContainer">Number of Containers</label>
+                  <input type="number" name="numContainer" id="numContainer" placeholder="0" min="0" step="1" <% if (project !== null) { %> value="<%= project.numContainer %>" <% } %> required />
+              </div>
+          </fieldset>
+        </form>
+    </div>
+
+    <div class="pure-u-1 pure-u-md-1-24">
+    </div>
+
+    <div class="pure-u-1 pure-u-md-15-24">
+      <form class="pure-form pure-form-stacked formula-form">
+          <fieldset>
+            <legend><h3>2).  Formula Ingredients</h3></legend>
+              <div class="pure-u-1 pure-u-md-6-24">
+                <label for="name">Name:</label>
+                <input class="pure-input-1" type="text" id="name" placeholder="Ingredient Name" required  />
+              </div>
+
+              <div class="pure-u-1 pure-u-md-5-24">
+                <label for="amount">Amount (mg):</label>
+                <input class="pure-input-1" type="number" id="amount" placeholder="0" min="0" step="0.1" required />
+              </div>
+
+              <div class="pure-u-1 pure-u-md-8-24">
+                <label for="notes">Notes:</label>
+                <input class="pure-input-1" type="text" id="notes" placeholder="form, supplier, etc" />
+              </div>
+
+              <div class="pure-u-1 pure-u-md-4-24">
+                <label for="submit">Add to Formula</label>
+                <input type="submit" id="submit" value="Add Ingredient" class="pure-button" />
+              </div>
+          </fieldset>
+      </form>
+
+        <div class="centered">
+            <h2>Your Formula</h2>
+              <table class="centered-block pure-table pure-table-striped formula-table">
+                <thead class="thead-styled">
+                  <tr class="centered">
+                      <th>Ingredient</th>
+                      <th>Amount</th>
+                      <th>Notes</th>
+                      <th></th>
+                  </tr>
+                </thead>
+                <tbody class="formula-body">
+                </tbody>
+              </table>
+          </div>
+      </div>
+    </div>
+
+    <div class="centered">
+      <button type="submit" value="Submit" class="pure-button pure-button-primary formula-submit" <% if(project !== null) { %> id = "<%= project.f_id %>" <% } %>>Save Formula</button>
+      <button class="pure-button button-warning formula-info">Formula Info</button>
+      <% if(project !== null) { %> <a class="pure-button button-success getPDF" id="<%=project.f_id%>" target='_blank'">Generate PDF </a> <% } %>
+    </div>
+</div>

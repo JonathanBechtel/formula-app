@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      html {
+        padding: 0px;
+        margin: 0px;
+        font-family: arial;
+        background-color: #fefdfb;
+        box-sizing: border-box;
+      }
+
+      .header {
+        background: rgb(47, 63, 79);
+        background: rgba(47, 63, 79, 0.9);
+        padding-top: 0.5em;
+      }
+
+      .header h1 {
+        color: #fefdfb;
+      }
+
+      h2, h3, h4, h5, h6 {
+        color: #283939;
+      }
+
+      p {
+        color: #2e4343;
+      }
+
+      .row {
+        margin-left: -15px;
+        margin-right: -15px;
+        margin-bottom: 15px;
+      }
+
+      .container {
+        padding: 1em;
+        margin-right: auto;
+        margin-left: auto;
+      }
+
+      .centered {
+        text-align: center;
+      }
+
+      .one-half {
+        width: 45%;
+        display: inline-block;
+        padding-left: 1.5em;
+      }
+
+      .pull-right {
+        float: right;
+      }
+
+      td {
+        margin-right: 10px;
+        min-width: 100px;
+      }
+
+      tr:nth-child(even) {
+        background-color: #e9f5f8;
+      }
+
+      table {
+        margin: 0 auto;
+      }
+
+      thead {
+        background: rgb(55, 97, 84);
+        background: rgba(55, 97, 84, 0.6);
+      }
+
+      thead th {
+        color: #fefdfb;
+        padding: 7px 10px;
+        font-size: 1.2em;
+        margin-right: 10px;
+        min-width: 100px;
+      }
+
+      tbody td {
+        color: #2e4343;
+        font-size: 1.2em;
+        padding: 5px;
+      }
+
+      tbody tr {
+        border: 1px 1px 1px 1px #ccc solid;
+      }
+    </style>
+  </head>
+  <body id="<%= ID %>">
+    <div class="container">
+      <div class="header">
+        <h1 class="centered">Formula Info Sheet</h1>
+        <p class="centered" style="color: #fefdfb; margin-top: -20px; padding-bottom: 15px;"><small>Created by Nutraceutical Pro&trade;</small></p>
+      </div>
+
+      <h2 class="centered">Personal Info</h2>
+
+        <div class="row">
+          <div class="one-half">
+            <p><strong>Name:</strong>  <%=user.name %></p>
+            <p><strong>Company:</strong>  <%=user.company %></p>
+          </div>
+
+          <div class="one-half pull-right">
+            <p><strong>E-mail:</strong>  <%=user.username %></p>
+            <p><strong>Phone:</strong>   <%=user.phoneNumber %></p>
+          </div>
+        </div>
+
+      <h2 class="centered">Project Info</h2>
+
+      <div class="row">
+        <div class="one-half">
+          <p><strong>Project Name:</strong>  <%=project.name %></p>
+          <p><strong>Product Form:</strong>  <%= project.form %></p>
+          <p><strong>Servings Per Container:</strong>   <%= project.servings %></p>
+        </div>
+
+        <div class="one-half pull-right">
+          <p><strong>I want to get started:</strong>  <%= project.timeframe %></p>
+          <p><strong>Desired Price/Container:</strong>  $<%=project.price %></p>
+          <p><strong>Number of Containers:</strong>  <%= project.numContainer %></p>
+        </div>
+      </div>
+
+      <div>
+      </div>
+
+      <h2 class="centered">Formula</h2>
+
+          <table>
+              <thead>
+                <tr>
+                    <th>Ingredient</th>
+                    <th>Amount (mg)</th>
+                    <th>Notes</th>
+                </tr>
+              </thead>
+              <tbody>
+                <%  project.ingredients.forEach(function(item){ %>
+                    <tr>
+                      <td><%=item.name%></td>
+                      <td><%=item.amount%></td>
+                      <td><%=item.notes%></td>
+                    </tr>
+                <%  }); %>
+              </tbody>
+            </table>
+          </div>
+
+      <div id="pageFooter">
+        <footer class="centered">
+          <p><small>Formula provided courtesy of Nutraceutical Pro&trade;.  The one stop shop for getting formulas developed, discovered, and manufactured.</small></p>
+          <p><small>Learn more at http://nutraceutical.pro.</small></p>
+        </footer>
+      </div>
+
+  </body>
+</html>

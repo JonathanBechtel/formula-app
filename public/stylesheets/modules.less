@@ -4,8 +4,40 @@
   padding-top: 35px;
 }
 
+.padded-bottom {
+  padding-bottom: 35px;
+}
+
+.padded-left {
+  padding-left: 35px;
+}
+
+.padded-right {
+  padding-right: 35px;
+}
+
 .margin-top {
   margin-top: 0.8em;
+}
+
+.margin-bottom {
+  margin-bottom: 0.8em;
+}
+
+.margin-big-bottom {
+  margin-bottom: 10em;
+}
+
+.margin-big-top {
+  margin-top: 2em;
+}
+
+.margin-right {
+  margin-right: 1em;
+}
+
+.margin-left {
+  margin-left: 1em;
 }
 
 a.not-decorated:hover {
@@ -76,6 +108,11 @@ a.not-decorated:hover {
     color: @off-white;
 }
 
+.button-big {
+  padding: 15px 20px 15px 20px;
+  font-size: 1.4em;
+}
+
 .absolute {
   position: absolute;
 }
@@ -85,11 +122,39 @@ a.not-decorated:hover {
     margin-right: auto;
     padding-left: 1em;
     padding-right: 1em;
-    max-width: 768px;
+    max-width: 1100px;
 }
 
 .full-width {
   width: 100%;
+}
+
+.headline {
+  font-size: @xxl-font;
+  font-family: courier;
+}
+
+.light-gray {
+  background-color: @light-gray;
+  color: @dark-grey;
+  margin-top: 1em;
+  font-size: @sm-font;
+  font-family: arial;
+  padding-top: 1.5em;
+  padding-bottom: 1.5em;
+}
+
+footer {
+  padding-top: 0.8em;
+  padding-bottom: 0.8em;
+  font-size: @sm-font;
+  background-color: lighten(@purple, 50%);
+  p {
+    color: lighten(@off-white, 15%);
+  }
+  a {
+    color: darken(@off-white, 15%);
+  }
 }
 
 .message {

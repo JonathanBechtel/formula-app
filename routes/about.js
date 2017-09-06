@@ -2,8 +2,6 @@ var app = require('express');
 var router = app.Router();
 
 router.get('/about', function(req, res){
-  console.log(req.user);
-  console.log(req.isAuthenticated());
   res.render('about', {
     title: 'About the Formula Generator',
     description: `The Formula Generator is designed to make it easy to manage and build great nutraceutical products`,

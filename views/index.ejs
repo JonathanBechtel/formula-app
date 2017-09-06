@@ -3,10 +3,57 @@
     <head>
       <% include partials/templates/header.ejs %>
       <% include partials/templates/stylesheets.ejs %>
+
+      <style>
+        .scrolling {
+          font-family: "Lucida Console", monospace;
+          font-size: 5em;
+          margin-top: -1.2em;
+          background: rgb(0, 139, 139);
+          background: rgba(0, 139, 139, 0.7);
+          color: #fefdfb;
+          padding: 10px 15px 10px 15px;
+        }
+      </style>
+
     </head>
     <body id="<%= ID %>">
       <% include partials/templates/menu-not-signed-in.ejs %>
-      <h1 class="centered"><%= title %></h1>
-      <p class="centered">Welcome to <%= title %></p>
+
+      <p class="headline centered">Get Help</p>
+      <div id="typed-strings">
+        <p><span class="scrolling">Building Your Formula.</span></p>
+        <p><span class="scrolling">Sourcing Ingredients.</span></p>
+        <p><span class="scrolling">Finding A Manufacturer.</span></p>
+        <p><span class="scrolling">Creating A Killer Formula.</span></p>
+        <p><span class="scrolling">Managing Your Project.</span></p>
+      </div>
+      <div class="centered margin-bottom">
+        <span id="typed-element"></span>
+      </div>
+
+      <div class="centered margin-big-top">
+        <a class="pure-button button-secondary button-big margin-big-top" href="/formula">Create A Formula</a>
+      </div>
+
+      <div class="light-gray centered">
+          <div class="content">
+            <p class="padded-left padded-right">Nutraceutical Pro&trade; is an application that lets you easily build formulas, and find the right suppliers and manufacturers to bring them to life.  It aims to reduce the frictions that are normally involved with getting a supplement manufactured.</p>
+            <p class="padded-left padded-right">We can also personally help you get your project started.</p>
+            <a class="pure-button button-success" href="/formula">Get Started</a>
+          </div>
+      </div>
+
+      <% include partials/templates/footer.ejs %>
+      <script src="../../javascripts/typed.js"></script>
+      <script>
+      var typed = new Typed('#typed-element', {
+        stringsElement: '#typed-strings',
+        typeSpeed: 100,
+        backSpeed: 40,
+        loop: true
+      });
+      </script>
     </body>
+
   </html>

@@ -14,7 +14,6 @@
 <% if (loggedIn && (ID !=='profile-page-changed' && ID !=='formula-saved')) { %>
     <link rel="stylesheet/less" type="text/css" href="../../stylesheets/global.less" />
     <link rel="stylesheet/less" type="text/css" href="../../stylesheets/modules.less" />
-    <!-- The link was inserted -->
 <% } %>
 
 <% if (!loggedIn) { %>
@@ -25,15 +24,18 @@
 
 <% if (ID == 'formula' && !loggedIn) { %>
   <link rel="stylesheet/less" type ="text/css" href="../../stylesheets/content/formula.less">
-  <link rel="stylesheet/less" type ="text/css" href="../../stylesheets/bootstrap.min.css">
+  <link rel="stylesheet/less" type ="text/css" href="../../stylesheets/templates/modal.css">
 <% } %>
 
 <% if (ID == 'formula' && loggedIn) { %>
   <link rel="stylesheet/less" type ="text/css" href="../../../stylesheets/content/formula.less">
+  <link rel="stylesheet/less" type ="text/css" href="../../../stylesheets/templates/modal.css">
 <% } %>
+
 
 <% if (ID == 'formula-saved') { %>
   <link rel="stylesheet/less" type ="text/css" href="../../../stylesheets/content/formula.less">
+  <link rel="stylesheet/less" type ="text/css" href="../../../stylesheets/templates/modal.css">
 <% } %>
 
 <% if (ID == 'formula-list') { %>

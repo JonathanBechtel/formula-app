@@ -1,7 +1,7 @@
 <form class="pure-form pure-form-aligned" id="profile-update-form" action="/users/<%=user.username.substring(0, user.username.indexOf('@'))%>/profile/<%= user.id %>" method="post">
 
   <fieldset>
-      <legend><strong>Update Your Name/E-mail</strong></legend>
+      <legend><strong>Update Your Personal Information</strong></legend>
       <div class="pure-control-group">
         <label for="name">Your Name:</label>
         <input type="text" pattern=".{2,35}" title="2 to 35 characters" name="name" id="name" required="true" value="<%=user.name %>" />
@@ -9,7 +9,18 @@
 
       <div class="pure-control-group">
         <label for="username">Your E-mail:</label>
-        <input type="email" name="username" id="username" value="<%= user.username %>" />
+        <input type="email" name="username" id="username" readonly="true" value="<%= user.username %>" />
+        <span class="pure-form-message-inline">This cannot be changed.</span>
+      </div>
+
+      <div class="pure-control-group">
+        <label for="company">Your Company:</label>
+        <input type="text" name="company" id="company" value="<%= user.company %>" />
+      </div>
+
+      <div class="pure-control-group">
+        <label for="phoneNumber">Phone Number:</label>
+        <input type="tel" name="phoneNumber" id="phoneNumber" pattern=".{10,10}" title="must be 10 digits" value="<%= user.phoneNumber  %>" />
       </div>
 
       <legend><strong>Update Your Password</strong></legend>

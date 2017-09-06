@@ -19,15 +19,19 @@ router.get('/users/:username/profile', function(req, res){
 
 router.post('/users/:username/profile/:id', function(req, res) {
   //declare all form variables
-  var name = req.body.name;
-  var username = req.body.username;
-  var oldPassword = req.body.oldPassword;
-  var newPassword = req.body.newPassword;
-  var newPassword2 = req.body.newPassword2;
+  var name           = req.body.name;
+  var username       = req.body.username;
+  var oldPassword    = req.body.oldPassword;
+  var newPassword    = req.body.newPassword;
+  var newPassword2   = req.body.newPassword2;
   var changePassword = req.body.changePassword;
-  var oldPassword = req.body.oldPassword;
-  var newPassword = req.body.newPassword;
-  var newPassword2 = req.body.newPassword2;
+  var oldPassword    = req.body.oldPassword;
+  var newPassword    = req.body.newPassword;
+  var newPassword2   = req.body.newPassword2;
+  var company        = req.body.company;
+  var phoneNumber    = req.body.phoneNumber;
+
+  //connect to db;
   var db = req.db.collection('users');
 
   //establish validation rules
@@ -65,11 +69,13 @@ router.post('/users/:username/profile/:id', function(req, res) {
     if (changePassword !== 'on') {
       db.updateOne({"_id": new ObjectID(req.user.id)}, {
         $set: {
-          "name": name,
-          "username": username
+          "name"        : name,
+          "username"    : username,
+          "company"     : company,
+          "phoneNumber" : phoneNumber
         }
       }, function(err, r) {
-          assert.equal(null, err);
+          if (err) {throw err;}
           assert.equal(1, r.matchedCount);
           assert.equal(1, r.modifiedCount);
       });
@@ -108,9 +114,11 @@ router.post('/users/:username/profile/:id', function(req, res) {
               bcrypt.hash(newPassword, salt, function(err, hash) {
                 db.updateOne({"_id": new ObjectID(req.user.id)}, {
                   $set: {
-                    "name": name,
-                    "username": username,
-                    "password": hash
+                    "name"        : name,
+                    "username"    : username,
+                    "company"     : company,
+                    "phoneNumber" : phoneNumber,
+                    "password"    : hash
                   }
                 }, function(err, r) {
                     assert.equal(null, err);

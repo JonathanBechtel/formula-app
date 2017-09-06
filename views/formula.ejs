@@ -9,17 +9,57 @@
     <h1 class="centered"><%= title %></h1>
     <p class="centered">Enter the ingredients for your formula below.</p>
 
-    <% include partials/content/formula-form.ejs %>
+    <div id="formula-build-div">
+      <% include partials/content/formula-form.ejs %>
+    </div>
+    <div id="formula-info-div" class="margin-big-top">
+
+      <div class="centered margin-big-top">
+        <button class="pure-button button-success back-to-main-page">Back to Main Page</button>
+      </div>
+
+      <div class="pure-g">
+        <div class="pure-u-1 pure-u-md-1-3">
+          <h3 class="centered">Your Ingredients, By Weight</h3>
+            <div class="centered">
+              <div id="formula-chart-div">
+              </div>
+            </div>
+        </div>
+
+        <div class="pure-u-1 pure-u-md-2-3">
+          <h3 class="centered">Ingredient Breakdown</h3>
+          <div class="centered">
+              <h2>Your Formula</h2>
+                <table class="centered-block pure-table pure-table-striped formula-breakdown-table">
+                    <thead class="thead-styled">
+                      <tr class="centered">
+                          <th>Ingredient</th>
+                          <th>Amt/Serving (mg)</th>
+                          <th>Amt/Bottle (mg)</th>
+                          <th>Amt/Run (kg)</th>
+                      </tr>
+                    </thead>
+                  <tbody>
+                  </tbody>
+                </table>
+            </div>
+        </div>
+
+      </div>
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
 
     <% if (!loggedIn) { %>
-      <script src="../javascripts/storage.js"></script>
-      <script src="../javascripts/formula-api.js"></script>
-      <script src="../javascripts/bootstrap.min.js"></script>
-      
-      <!-- Modal2 -->
-      <div class="modal fade" id="modal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <script src="../javascripts/logged-out/formula-api.js"></script>
+      <script src="../javascripts/modal.js"></script>
+      <script src="../javascripts/formula.js"></script>
+      <script src="../javascripts/formula-chart.js"></script>
+
+      <!-- Modal1 -->
+      <div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -37,9 +77,47 @@
         </div>
       </div>
     <% } else { %>
-        <script src="../../../javascripts/formula-api.js"></script>
-        <script src="../../../javascripts/bootstrap.min.js"></script>
+        <script src="../../../javascripts/logged-in/formula-api.js"></script>
+        <script src="../../../javascripts/modal.js"></script>
+        <script src="../../../javascripts/formula.js"></script>
+        <script src="../../../javascripts/formula-chart.js"></script>
     <% } %>
+
+    <!-- Modal2 -->
+    <div class="modal fade" id="modal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="myModalLabel">Additional Info Needed</h4>
+          </div>
+          <div class="modal-body">
+            <p>Whoops!  You forgot to fill out some forms in the 'Project Info' section of the page.
+            <p>Please go back and fill them out.  Thank you!</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="pure-button button-error" data-dismiss="modal">Go Back</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal3 -->
+    <div class="modal fade" id="modal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="myModalLabel">You haven't entered a formula.</h4>
+          </div>
+          <div class="modal-body">
+            <p>Your formula doesn't have any ingredients!</p>
+            <p>Make sure to hit the "Add Ingredient" button to make sure they get entered.
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="pure-button button-error" data-dismiss="modal">Fix Formula</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 

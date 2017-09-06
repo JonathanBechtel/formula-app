@@ -42,7 +42,6 @@ router.post('/forgot-password', function(req, res){
       message.passwordReset(email, token);
       }
     });
-    req.db.close();
   });
 
 module.exports = router;

@@ -15,7 +15,16 @@ passport.deserializeUser(function(id, done) {
     if (e) {return next(e);}
     var col = db.collection("users");
     col.findOne({"username": id}, function(err, user){
-      done(err, {"id": user._id, "username": id, "activeEmail": user.activeEmail, "name": user.name, "password": user.password, "formulas": user.formulas});
+      done(err, {
+        "id": user._id,
+        "username": id,
+        "company": user.company,
+        "phoneNumber": user.phoneNumber,
+        "activeEmail": user.activeEmail,
+        "name": user.name,
+        "password": user.password,
+        "formulas": user.formulas
+      });
     });
   });
 });
@@ -65,7 +74,7 @@ router.post('/login',
 
 router.get('/logout', function(req, res){
 	req.logout();
-  delete req.session.passport; //this is to avoid complications w/line 33 on formula-list.js
+  delete req.session.passport; //this is to avoid complications w/line 37 on formula-list.js
 	res.redirect('/');
 });
 

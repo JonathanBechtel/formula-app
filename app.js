@@ -16,8 +16,8 @@ app.use(cookieParser());
 // Express Session
 app.use(session({
   secret: 'secret',
-  resave: true,
-  saveUninitialized: false
+  resave: false,
+  saveUninitialized: true
   }));
 
 app.use(bodyParser.json());
@@ -35,6 +35,9 @@ app.use((req, res, next) => {
     req.db = db;
     next();
   });
+
+  // cleanup
+  req.on('end', () => { req.db.close(); });
 });
 
 app.set('view engine', 'ejs');
@@ -71,6 +74,9 @@ var login = require('./routes/login');
 var profile = require('./routes/profile');
 var forgotPassword = require('./routes/forgot-password');
 var resetPassword = require('./routes/reset-password');
+var pdf = require('./routes/pdf');
+var suppliers = require('./routes/suppliers');
+var work = require('./routes/work');
 
 app.use(root);
 app.use(about);
@@ -83,6 +89,9 @@ app.use(login);
 app.use(profile);
 app.use(forgotPassword);
 app.use(resetPassword);
+app.use(pdf);
+app.use(suppliers);
+app.use(work);
 
 app.set('port', (process.env.PORT || 3000));
 

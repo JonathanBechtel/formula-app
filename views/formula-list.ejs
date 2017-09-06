@@ -4,18 +4,14 @@
     <% include partials/templates/header.ejs %>
     <% include partials/templates/stylesheets.ejs %>
   </head>
-  <body id="<%= ID %>">
+  <body id="<%= ID %>" class="padded-left padded-right">
     <% include partials/templates/menu-not-signed-in.ejs %>
     <h1 class="centered"><%= title %></h1>
     <% include partials/content/formula-list.ejs %>
 
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 
-    <% if (!loggedIn) { %>
-      <script src="../javascripts/formula-list.js"></script>
-    <% } else { %>
-      <script src="../../javascripts/formula-list.js"></script>
-    <% } %>
+    <script src="../../javascripts/formula-list.js"></script>
 
   </body>
 </html>

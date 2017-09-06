@@ -37,7 +37,6 @@ router.get('/reset-password/:token', function(req, res){
       });
     };
   });
-  req.db.close();
 });
 
 router.post('/reset-password/:token', function(req, res){
