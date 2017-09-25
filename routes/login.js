@@ -11,7 +11,7 @@ passport.serializeUser(function(user, done) {
 });
 
 passport.deserializeUser(function(id, done) {
-  mongo.connect("mongodb://localhost:27017/formulas", function(e, db){
+  mongo.connect("mongodb://jonathanbechtel:sKLQ684j%^@ds127044.mlab.com:27044/heroku_wp406fgr", function(e, db){
     if (e) {return next(e);}
     var col = db.collection("users");
     col.findOne({"username": id}, function(err, user){
@@ -32,7 +32,7 @@ passport.deserializeUser(function(id, done) {
 passport.use(new LocalStrategy(
  function(username, password, done) {
    //Fire up database
-    mongo.connect("mongodb://localhost:27017/formulas", function(e, db) {
+    mongo.connect("mongodb://jonathanbechtel:sKLQ684j%^@ds127044.mlab.com:27044/heroku_wp406fgr", function(e, db) {
       if (e) {return next(e);}
       var col = db.collection("users");
       //Do a database query to find a record by username
