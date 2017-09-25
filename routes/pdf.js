@@ -33,7 +33,7 @@ router.post('/formulas/:id/pdf', function(req, res){
           html = results;
         });
         var options = { format: 'Letter' };
-        var path = 'public/pdf/formula-' + req.params.id + '.pdf';
+        var path = './public/pdf/formula-' + req.params.id + '.pdf';
         pdf.create(html, options).toFile(path, function(err, results) {
           if (err) {
             return console.log(err);
