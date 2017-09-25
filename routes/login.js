@@ -11,7 +11,7 @@ passport.serializeUser(function(user, done) {
 });
 
 passport.deserializeUser(function(id, done) {
-  mongo.connect("mongodb://jb_heroku:sKLQ684j#$@ds127044.mlab.com:27044/heroku_wp406fgr", function(e, db){
+  mongo.connect("mongodb://jb_heroku:sKLQ684j%23%24@ds127044.mlab.com:27044/heroku_wp406fgr", function(e, db){
     if (e) {return next(e);}
     var col = db.collection("users");
     col.findOne({"username": id}, function(err, user){
