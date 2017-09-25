@@ -30,7 +30,7 @@ app.use(flash());
 
 // make mongodb available to the application
 app.use((req, res, next) => {
-  mongo.connect('mongodb://jb_heroku:02051985JBBEsQ311235813@ds127044.mlab.com:27044/heroku_wp406fgr', (e, db) => {
+  mongo.connect('mongodb://jb_heroku:sKLQ684j#$@ds127044.mlab.com:27044/heroku_wp406fgr', (e, db) => {
     if (e) return next(e);
     req.db = db;
     next();
