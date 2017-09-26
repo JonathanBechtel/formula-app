@@ -4,7 +4,7 @@ var ObjectID = require('mongodb').ObjectID;
 var pdf =require('html-pdf');
 var ejs = require('ejs');
 
-router.post('/formulas/:id/pdf', function(req, res){
+router.get('/formulas/:id/pdf', function(req, res){
   var db = req.db.collection('users');
   var id = new ObjectID(req.params.id);
   var pointer = {"formulas.$": 1, "_id": 0};

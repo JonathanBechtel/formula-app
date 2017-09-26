@@ -102,7 +102,7 @@ $(document).ready(function(){
    var filepath = 'https://nutraceutical-pro.herokuapp.com/public/pdf/formula-' + this.id + '.pdf';
    $.ajax({
      url: '/formulas/'+ this.id +'/pdf',
-     type: 'POST',
+     type: 'GET',
      success: function () {window.open(filepath);}
    });
 
