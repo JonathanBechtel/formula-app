@@ -3,6 +3,7 @@ var router = app.Router();
 var ObjectID = require('mongodb').ObjectID;
 var pdf =require('html-pdf');
 var ejs = require('ejs');
+var fs  = require('fs');
 
 router.get('/formulas/:id/pdf', function(req, res){
   var db = req.db.collection('users');
@@ -34,11 +35,13 @@ router.get('/formulas/:id/pdf', function(req, res){
         });
         var options = { format: 'Letter' };
         var path = './public/pdf/formula-' + req.params.id + '.pdf';
-        pdf.create(html, options).toFile(path, function(err, results) {
+        pdf.create(html, options).toStream(function(err, stream) {
           if (err) {
             return console.log(err);
           }
-          if (results) {
+          if (stream) {
+            stream.pipe(fs.createWriteStream(path));
+            console.log("the pdf was streamed.");
             res.end();
           }
         });
