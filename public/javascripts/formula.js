@@ -99,7 +99,7 @@ $(document).ready(function(){
 
  //sends post request when user hits the 'Generate PDF' button
  $('.getPDF').click(function(){
-   var filepath = 'https://nutraceutical-pro.herokuapp.com/public/pdf/formula-' + this.id + '.pdf';
+   var filepath = 'http://localhost:3000/pdf/formula-' + this.id + '.pdf';
    $.ajax({
      url: '/formulas/'+ this.id +'/pdf',
      type: 'GET',
