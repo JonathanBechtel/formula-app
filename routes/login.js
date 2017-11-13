@@ -75,6 +75,9 @@ router.post('/login', recaptcha.middleware.render,
     if (!req.recaptcha.error) {
       res.redirect('/users/' + req.user.username.substring(0, req.user.username.indexOf('@')));
     }
+    else {
+      console.log("User was not authenticated.");
+    }
   });
 
 router.get('/logout', function(req, res){
