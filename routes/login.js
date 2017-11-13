@@ -5,6 +5,8 @@ var bcrypt = require('bcrypt');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var mongo = require('mongodb').MongoClient;
+var Recaptcha = require('express-recaptcha');
+var recaptcha = new Recaptcha('6LfAYTgUAAAAAMjLms1Y9yv_ER8-qJ-MXBqIJHT6', '6LfAYTgUAAAAANZsIvIuGnX37lPelHzLFzJrRLWw');
 
 passport.serializeUser(function(user, done) {
   done(null, user.username);
@@ -67,10 +69,12 @@ router.get('/login', function(req, res){
   });
 });
 
-router.post('/login',
+router.post('/login', recaptcha.middleware.render,
   passport.authenticate('local', {failureRedirect: '/login', failureFlash: true}),
   function(req, res) {
-    res.redirect('/users/' + req.user.username.substring(0, req.user.username.indexOf('@')));
+    if (!req.recaptcha.error) {
+      res.redirect('/users/' + req.user.username.substring(0, req.user.username.indexOf('@')));
+    }
   });
 
 router.get('/logout', function(req, res){

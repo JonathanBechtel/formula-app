@@ -6,12 +6,6 @@
       <label for="password">Your password:</label>
       <input type="password" pattern=".{8,24}" title="8 to 24 characters" name="password" id="password" required="true" placeholder="password" />
 
-    <input type="submit" value="Sign In" class="pure-button"></input>
+      <input type="submit" value="Sign In" class="g-recaptcha pure-button pure-button-primary" data-sitekey="6LfAYTgUAAAAAMjLms1Y9yv_ER8-qJ-MXBqIJHT6" data-callback="YourOnSubmitFn"></input>
   </fieldset>
-  <button
-    class="g-recaptcha"
-    data-sitekey="6LfAYTgUAAAAAMjLms1Y9yv_ER8-qJ-MXBqIJHT6"
-    data-callback="YourOnSubmitFn">
-    Submit
-  </button>
 </form>
