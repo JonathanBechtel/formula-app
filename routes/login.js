@@ -63,22 +63,25 @@ router.get('/login', function(req, res){
     title: 'Formula Generator Login',
     description: 'Log in to your Formula Generator account',
     ID: 'login',
+    captcha: res.recaptcha,
     keywords: 'formula generator, formula generator registration, supplement analyzer, formula generator signup form',
     user: req.user,
     loggedIn: req.isAuthenticated()
   });
 });
 
-router.post('/login', recaptcha.middleware.render,
-  passport.authenticate('local', {failureRedirect: '/login', failureFlash: true}),
-  function(req, res) {
-    if (!req.recaptcha.error) {
-      res.redirect('/users/' + req.user.username.substring(0, req.user.username.indexOf('@')));
+router.post('/login', recaptcha.middleware.verify, function(req, res, next) {
+  console.log('HERE');
+  if (!req.recaptcha.error) {
+    return next();
+  } else {
+    res.end('Captcha failed, whoops!');
+    return false;
     }
-    else {
-      console.log("User was not authenticated.");
-    }
-  });
+  }, passport.authenticate('local', {failureRedirect: '/login', failureFlash: true}), function(req, res) {
+    res.redirect('/users/' + req.user.username.substring(0, req.user.username.indexOf('@')));
+  }
+);
 
 router.get('/logout', function(req, res){
 	req.logout();
