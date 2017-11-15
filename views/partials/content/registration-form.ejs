@@ -1,5 +1,4 @@
 <form class="pure-form pure-form-stacked centered-form" id="registration-form" action="/register" method="post">
-  <fieldset>
       <label for="name">Your Name:</label>
       <input type="text" name="name" id="name" required="true" placeholder="Your Name" />
 
@@ -15,7 +14,7 @@
 
       <label for="password2">Repeat password:</label>
       <input type="password" pattern=".{8,24}" title="8 to 24 characters" name="password2" id="password2" required="true" placeholder="password"/><br />
+      <div class="g-recaptcha margin-top margin-bottom" data-sitekey="6LemwzgUAAAAABCkjbSONrDAa4y5Gu3g-sO7SFN7"></div>
 
-      <input type="submit" value="Sign In" class="g-recaptcha pure-button pure-button-primary" data-sitekey="6LfAYTgUAAAAAMjLms1Y9yv_ER8-qJ-MXBqIJHT6" data-callback="YourOnSubmitFn"></input>
-  </fieldset>
+      <input type="submit" value="Sign In" class="pure-button pure-button-primary"></input>
 </form>

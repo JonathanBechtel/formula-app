@@ -3,6 +3,8 @@ var router = app.Router();
 var assert = require('assert');
 var bcrypt = require('bcrypt');
 var message = require('../models/mailer.js');
+var Recaptcha = require('express-recaptcha');
+var recaptcha = new Recaptcha('6LemwzgUAAAAABCkjbSONrDAa4y5Gu3g-sO7SFN7', '6LemwzgUAAAAAOl4ut20J1fqL2A4hNGfqNCeHqMo');
 
 router.get('/register', function(req, res){
   res.render('register', {
@@ -17,7 +19,7 @@ router.get('/register', function(req, res){
   });
 });
 
-router.post('/register', function(req, res){
+router.post('/register', recaptcha.middleware.verify, function(req, res){
   var name = req.body.name;
   var username = req.body.username;
   var username2 = req.body.username2;
@@ -39,8 +41,13 @@ router.post('/register', function(req, res){
 
   var errors = req.validationErrors();
 
+  if (req.recaptcha.error) {
+    errors.push({msg: 'Please fill out the recaptcha.'});
+  }
+
   //if validation errors then send error messages
   if (errors) {
+    console.log(errors);
     res.render('register', {
       errors: errors,
       registered: null,
