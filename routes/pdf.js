@@ -32,7 +32,6 @@ router.get('/formulas/:id/pdf', function(req, res){
           console.log(err);
           }
           html = results;
-        });
         var options = { format: 'Letter' };
         var path = './public/pdf/formula-' + req.params.id + '.pdf';
         pdf.create(html, options).toStream(function(err, stream) {
@@ -44,6 +43,7 @@ router.get('/formulas/:id/pdf', function(req, res){
             res.end();
           }
         });
+       });
       }
     });
   });
