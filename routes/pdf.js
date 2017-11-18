@@ -41,7 +41,6 @@ router.get('/formulas/:id/pdf', function(req, res){
           }
           if (stream) {
             stream.pipe(fs.createWriteStream(path));
-            console.log("the pdf was streamed.");
             res.end();
           }
         });

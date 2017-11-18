@@ -17,7 +17,7 @@ router.get('/users/:username/profile', function(req, res){
   });
 });
 
-router.post('/users/:username/profile/:id', function(req, res) {
+router.post('/users/:username/profile', function(req, res) {
   //declare all form variables
   var name           = req.body.name;
   var username       = req.body.username;
@@ -85,7 +85,7 @@ router.post('/users/:username/profile/:id', function(req, res) {
         profileChanged: true,
         errors: null,
         title: 'Your Profile Changes Have Been Updated',
-        description: 'You will have to log back in to see the changes',
+        description: 'You might have to log back in to see the changes',
         ID: 'profile-page-changed',
         keywords: 'formula generator profile page',
         user: req.user,

@@ -10,7 +10,6 @@ var session = require('express-session');
 var bcrypt = require('bcrypt');
 var flash = require('connect-flash');
 
-
 //define middleware
 app.use(cookieParser());
 // Express Session
