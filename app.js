@@ -14,7 +14,7 @@ var flash = require('connect-flash');
 app.use(cookieParser());
 // Express Session
 app.use(session({
-  secret: 'secret',
+  secret: 's%kf$lwDF98d2fr4',
   resave: false,
   saveUninitialized: true
   }));
