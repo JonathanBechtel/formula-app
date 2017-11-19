@@ -4,7 +4,7 @@
           <div class="formula-block centered" id=<%=item.f_id%>>
             <h4 class="padded-top"> <%= item.name %></h4>
             <p> <%= item.description %></p>
-                <button class="button-success pure-button"><a href="/users/<%=user.username.substring(0, user.username.indexOf('@'))%>/formula/<%= item.f_id %>">Show</a></button>
+                <a class="button-success pure-button" href="/users/<%=user.username.substring(0, user.username.indexOf('@'))%>/formula/<%= item.f_id %>">Show</a>
                 <button class="button-warning pure-button">Delete</button>
         </div>
       </div>
