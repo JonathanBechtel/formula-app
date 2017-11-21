@@ -1,14 +1,14 @@
-var express = require('express');
-var app = express();
-var bodyParser = require('body-parser');
-var cookieParser = require('cookie-parser');
+var express          = require('express');
+var app              = express();
+var bodyParser       = require('body-parser');
+var cookieParser     = require('cookie-parser');
 var expressValidator = require('express-validator');
-var passport = require('passport');
-var localStrategy = require('passport-local').Strategy;
-var mongo = require('mongodb').MongoClient;
-var session = require('express-session');
-var bcrypt = require('bcrypt');
-var flash = require('connect-flash');
+var passport         = require('passport');
+var localStrategy    = require('passport-local').Strategy;
+var mongo            = require('mongodb').MongoClient;
+var session          = require('express-session');
+var bcrypt           = require('bcrypt');
+var flash            = require('connect-flash');
 
 //define middleware
 app.use(cookieParser());
@@ -47,8 +47,8 @@ app.use(express.static(__dirname + '/public'));
 app.use(expressValidator({
   errorFormatter: function(param, msg, value) {
       var namespace = param.split('.')
-      , root    = namespace.shift()
-      , formParam = root;
+      , root        = namespace.shift()
+      , formParam   = root;
 
     while(namespace.length) {
       formParam += '[' + namespace.shift() + ']';
